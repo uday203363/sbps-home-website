@@ -1,0 +1,278 @@
+{
+  "phone": "9160160690",
+  "mobile": "09515754762",
+  "email": "sribhashyampublicschool@gmail.com",
+  "address": "45/150-12, Kadapa Rd, near S.V. College of Engineering, TarakaRama Nagar, Nagarajupeta, Andhra Pradesh 516004",
+  "motto": "Knowledge - Character - Excellence",
+  "slogan": "Building Tomorrow's Leaders Today",
+  "stats": {
+    "legacyYears": 20,
+    "activeStudents": 600,
+    "expertMentors": 25,
+    "passRate": 100
+  },
+  "ageConstraints": {
+    "nursery": 3,
+    "class1": 6
+  },
+  "fees": {
+    "pre-primary": {
+      "admission": 5000,
+      "tuition": 28000,
+      "lab": 2000
+    },
+    "primary": {
+      "admission": 6000,
+      "tuition": 34000,
+      "lab": 2500
+    },
+    "middle": {
+      "admission": 8000,
+      "tuition": 42000,
+      "lab": 3000
+    },
+    "high": {
+      "admission": 10000,
+      "tuition": 50000,
+      "lab": 4000
+    }
+  },
+  "transportFees": {
+    "self": 0,
+    "under-5km": 12000,
+    "above-5km": 18000
+  },
+  "siblingDiscountPercent": 5,
+  "about": {
+    "heading": "Welcome to Sri Bhashyam Public School",
+    "text1": "Established with a commitment to academic excellence, moral integrity, and modern pedagogical practices, Sri Bhashyam Public School offers a nurturing environment for students from Nursery through Class X.",
+    "text2": "Our state-of-the-board curriculum focuses on holistic growth, integrating conceptual academic grounding with sports, technology, and cultural values.",
+    "quote": "Education is the most powerful weapon which you can use to change the world."
+  },
+  "chairman": {
+    "name": "V. Naga Subba Reddy",
+    "role": "correspondent",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300",
+    "message": "Welcome to Sri Bhashyam Public School. Our mission is to empower young minds with high moral standards, analytical capabilities, and leadership qualities. We believe every child possesses unique potential waiting to be unlocked."
+  },
+  "visionMission": {
+    "visionText": "To nurture confident, compassionate, and responsible individuals who excel academically, think creatively, embrace innovation, and contribute positively to society and the nation.",
+    "visionBullets": [
+      "Foster scientific temper & research mindset",
+      "Bridge academic theory with actual practical exposure",
+      "Focus on values-driven character building"
+    ],
+    "missionText": "At Sri Bhashyam Public School, our mission is to provide quality education in a nurturing and inspiring environment that develops every student’s knowledge, creativity, confidence, and critical thinking. We strive to build strong character, discipline, leadership, and respect for others through holistic learning. By combining academic excellence with technology, sports, arts, and life skills, we empower our students to become responsible, compassionate, and successful citizens of tomorrow.",
+    "missionBullets": [
+      "Provide continuous infrastructure improvements",
+      "Empower teachers with modern digital pedagogical tools",
+      "Create strong partnerships with parents and the community"
+    ]
+  },
+  "values": [
+    {
+      "title": "Academic Excellence",
+      "description": "Delivering conceptual clarity, rigorous assessment routines, and competitive edge in state & national standards."
+    },
+    {
+      "title": "Moral Integrity & Ethics",
+      "description": "Instilling truthfulness, discipline, respect for elders, and traditional Indian moral values."
+    },
+    {
+      "title": "Holistic Development",
+      "description": "Balancing academic studies with sports, cultural arts, public speaking, and physical fitness."
+    },
+    {
+      "title": "Innovation & Critical Thinking",
+      "description": "Encouraging scientific inquiry, practical problem-solving, and independent analytical capabilities."
+    }
+  ],
+  "academics": {
+    "high": {
+      "lead": "Rigorous academic preparation for Board Examinations and future competitive success.",
+      "image": "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=600",
+      "title": "High School (Class IX to Class X)",
+      "features": [
+        "State Board Syllabus Deep-Dive & Practice",
+        "Weekly Formative & Summative Mock Evaluations",
+        "Specialized Mentorship for Board Aspirants",
+        "Career Guidance & Skill Building Orientation"
+      ],
+      "description": "Comprehensive curriculum aligned with state standards, emphasizing in-depth subject mastery, systematic revision plans, mock assessments, and personalized exam orientation."
+    },
+    "middle": {
+      "lead": "Empowering critical thinking, scientific curiosity, and experiential conceptual clarity.",
+      "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=600",
+      "title": "Middle School (Class VI to Class VIII)",
+      "features": [
+        "Hands-on Science & Computer Lab Practice",
+        "Structured Analytical & Mathematical Problem Solving",
+        "Language Communication & Debate Workshops",
+        "Holistic Personality & Moral Value Integration"
+      ],
+      "description": "Middle school builds strong subject foundations across Mathematics, Sciences, Social Studies, and Languages, integrating practical laboratory sessions, project work, and interactive problem solving."
+    },
+    "competitive": {
+      "lead": "Special focus batches preparing students for medical and engineering entrance exams.",
+      "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=600",
+      "title": "NEET & JEE Integrated Prep",
+      "features": [
+        "Daily Concept Practice Sheets & Micro-Tests",
+        "IIT/NEET Expert Guest Faculty Sessions",
+        "Advanced Problem Solving & Speed Techniques",
+        "Performance Analytics & Progress Tracking"
+      ],
+      "description": "Integrated coaching embedded within regular school hours to strengthen Physics, Chemistry, and Mathematics/Biology concepts for national competitive entrance tests."
+    },
+    "little-champs": {
+      "lead": "Foundational learning encouraging curiosity, active exploration, and creative skill development.",
+      "image": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&q=80&w=600",
+      "title": "Little Champs (Nursery to Class V)",
+      "features": [
+        "Phonics & Early Reading Mastery",
+        "Interactive Smart Classroom Activities",
+        "Activity-Based Math & Science Concepts",
+        "Personalized Attention & Caring Mentorship"
+      ],
+      "description": "Our primary program focuses on activity-based and play-way methods. We nurture fundamental literacy, numeracy, social skills, and creative thinking in a safe, vibrant environment."
+    }
+  },
+  "facilities": [
+    {
+      "icon": "fa-solid fa-chalkboard-user",
+      "image": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&q=80&w=600",
+      "title": "Interactive Smart Classrooms",
+      "description": "Digitally equipped classrooms with audio-visual learning tools and interactive smart boards for immersive learning."
+    },
+    {
+      "icon": "fa-solid fa-flask-vial",
+      "image": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=600",
+      "title": "Hi-Tech Science Laboratories",
+      "description": "Fully equipped Physics, Chemistry, and Biology labs enabling practical experiments and scientific exploration."
+    },
+    {
+      "icon": "fa-solid fa-laptop-code",
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=600",
+      "title": "Computer & Digital Innovation Hub",
+      "description": "Modern computer lab with high-speed connectivity, programming environments, and digital literacy training."
+    },
+    {
+      "icon": "fa-solid fa-book-bookmark",
+      "image": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=600",
+      "title": "Library & Knowledge Resource Center",
+      "description": "Vast repository of academic textbooks, reference journals, literature, encyclopedias, and digital learning assets."
+    },
+    {
+      "icon": "fa-solid fa-volleyball",
+      "image": "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?auto=format&fit=crop&q=80&w=600",
+      "title": "Sports & Athletic Arena",
+      "description": "Expansive outdoor play fields and indoor sports facilities supporting athletics, cricket, volleyball, chess, and karate."
+    },
+    {
+      "icon": "fa-solid fa-bus-simple",
+      "image": "https://images.unsplash.com/photo-1557223562-6c77ef16210f?auto=format&fit=crop&q=80&w=600",
+      "title": "Safe & Monitored Campus Transport",
+      "description": "Fleet of GPS-tracked school buses covering key locations across Kadapa with trained drivers and attendants."
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Sri Bhashyam Public School provides an outstanding learning environment. Teachers pay individual attention to every student and encourage moral values along with top-grade academics.",
+      "rating": 5,
+      "parentName": "K. Raghunath Reddy",
+      "studentInfo": "Parent of Class IX Student"
+    },
+    {
+      "quote": "The NEET & JEE foundation program is fantastic. My son has developed immense confidence in Math and Science thanks to the dedicated faculty members.",
+      "rating": 5,
+      "parentName": "Smt. S. Anitha",
+      "studentInfo": "Parent of Class X Student"
+    },
+    {
+      "quote": "A perfect blend of modern smart classrooms, discipline, and cultural heritage. We are extremely happy with our daughter's progress over the years.",
+      "rating": 5,
+      "parentName": "P. Sudhakar Rao",
+      "studentInfo": "Parent of Class V Student"
+    }
+  ],
+  "notifications": [
+    "Parent-Teacher Meeting (PTM) for Mid-Term performance evaluation on Saturday",
+    "Admission is opened for  2026-2027"
+  ],
+  "gallery": [
+    {
+      "tag": "Campus",
+      "image": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=600",
+      "title": "Modern Campus Building",
+      "category": "campus"
+    },
+    {
+      "tag": "Classroom",
+      "image": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&q=80&w=600",
+      "title": "Smart Interactive Classroom",
+      "category": "academic"
+    },
+    {
+      "tag": "Sports",
+      "image": "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?auto=format&fit=crop&q=80&w=600",
+      "title": "Annual Athletic Games",
+      "category": "sports"
+    }
+  ],
+  "faculties": [
+    {
+      "name": "Dr. R. Ramanaiah",
+      "role": "Principal & Senior Science Educator",
+      "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300",
+      "message": "Dedicated to building strong foundational values and academic perfection."
+    },
+    {
+      "name": "Smt. K. Lakshmi",
+      "role": "Head of Mathematics Department",
+      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300",
+      "message": "Simplifying complex numerical concepts through interactive practical exercises."
+    }
+  ],
+  "students": [
+    {
+      "name": "K. Rohith",
+      "role": "Class X Board Topper (98.4%)",
+      "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=300",
+      "message": "The constant guidance from Bhashyam teachers helped me top the state exams."
+    },
+    {
+      "name": "M. Sahasra",
+      "role": "State Level Science Olympiad Winner",
+      "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=300",
+      "message": "Our hi-tech science labs made learning experiments super exciting."
+    }
+  ],
+  "notices": [
+    {
+      "date": "July 30, 2026",
+      "link": "",
+      "title": "Mid-Term Examination Schedule Released",
+      "description": "The detailed date sheet for Mid-Term examinations (Classes I to X) is published on the portal."
+    },
+    {
+      "date": "August 10, 2026",
+      "link": "",
+      "title": "79th Independence Day Celebrations",
+      "description": "Flag hoisting ceremony and cultural events will commence at 8:00 AM in the main campus quadrangle."
+    }
+  ],
+  "events": [
+    {
+      "day": "15",
+      "month": "AUG",
+      "title": "Independence Day Flag Hoisting & Cultural Parade",
+      "description": "Grand parade, patriotic song competitions, and sweets distribution for all students."
+    },
+    {
+      "day": "05",
+      "month": "SEP",
+      "title": "Teachers' Day Celebrations & Student Leadership Day",
+      "description": "Senior students step into educator roles to celebrate and honor our teaching staff."
+    }
+  ]
+}

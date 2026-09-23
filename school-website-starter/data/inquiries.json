@@ -1,0 +1,32 @@
+[
+  {
+    "id": "mrdiy4a0013vx",
+    "name": "Rachapalli uday kumar reddy",
+    "email": "admin@example.com",
+    "phone": "09515754762",
+    "grade": "Nursery",
+    "message": "",
+    "type": "Admission Inquiry",
+    "timestamp": "2026-07-09T13:10:18.408Z"
+  },
+  {
+    "id": "mrqnhtm8qgix8",
+    "name": "Rachapalli uday kumar reddy",
+    "email": "admin@example.com",
+    "phone": "09515754762",
+    "grade": "UKG",
+    "message": "",
+    "type": "Admission Inquiry",
+    "timestamp": "2026-07-18T17:38:36.464Z"
+  },
+  {
+    "id": "mrqnm1096kpqo",
+    "name": "Rachapalli uday kumar reddy",
+    "email": "admin@example.com",
+    "phone": "09515754762",
+    "grade": "Class I",
+    "message": "",
+    "type": "Admission Inquiry",
+    "timestamp": "2026-07-18T17:41:52.665Z"
+  }
+]

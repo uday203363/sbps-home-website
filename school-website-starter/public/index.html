@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Bhashyam Public School | Kadapa's Premier Educational Institution</title>
+    <meta name="description"
+        content="Welcome to Sri Bhashyam Public School, Kadapa. Over 20 years of educational excellence, nurturing minds with state-of-the-art facilities, AP State Board curriculum, and specialized NEET/JEE foundation preparation.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-info">
+                <span><i class="fa-solid fa-phone"></i> <span id="top-phone">+91 9160160690</span></span>
+                <span><i class="fa-solid fa-envelope"></i> <span
+                        id="top-email">sribhashyamforyou@gmail.com</span></span>
+                <span><i class="fa-solid fa-location-dot"></i> <span id="top-address-short">Tarakarama Nagar, Kadapa,
+                        AP</span></span>
+            </div>
+
+            <div class="top-actions">
+                <a href="#admission-inquiry" class="btn btn-xs btn-gold">Admissions Open 2026-27</a>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/1BbigC9EZq/" target="_blank" rel="noopener noreferrer" title="Follow us on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/sribhashyam_public_school?igsh=OGdkc2U5NWY3cGNw" target="_blank" rel="noopener noreferrer" title="Follow us on Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@SRIBHASHYAMPUBLICSCHOOLKADAPA" target="_blank" rel="noopener noreferrer" title="Subscribe on YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-area">
+                <!-- School Emblem Logo -->
+                <img src="logo.png" alt="Sri Bhashyam Public School Logo" class="school-logo-img">
+
+                <div class="logo-text">
+                    <span class="school-title">SRI BHASHYAM</span>
+                    <span class="school-subtitle">PUBLIC SCHOOL • KADAPA</span>
+                    <span class="motto-text">"<span id="logo-slogan">Kim Kim Na Sadhayati Kalpalateva
+                            Vidya</span>"</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="academics.html" class="nav-link">Academics</a>
+                <a href="admissions.html" class="nav-link">Admissions</a>
+                <a href="facilities.html" class="nav-link">Facilities</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="news.html" class="nav-link">News & Events</a>
+                <a href="faculty.html" class="nav-link">Faculty</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="admissions.html" class="btn btn-primary nav-cta">Enquire Now</a>
+            </nav>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Scrolling Announcements Ticker -->
+    <div class="ticker-wrap">
+        <span class="ticker-title"><i class="fa-solid fa-bullhorn"></i> Latest</span>
+        <div class="ticker-content" id="ticker-content">
+            <!-- Dynamically populated from JS -->
+        </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobile-drawer">
+        <div class="drawer-header">
+            <span class="drawer-title">Menu</span>
+            <button class="drawer-close" id="drawer-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-body">
+            <a href="index.html" class="drawer-link">Home</a>
+            <a href="about.html" class="drawer-link">About Us</a>
+            <a href="academics.html" class="drawer-link">Academics</a>
+            <a href="admissions.html" class="drawer-link">Admissions</a>
+            <a href="facilities.html" class="drawer-link">Facilities</a>
+            <a href="gallery.html" class="drawer-link">Gallery</a>
+            <a href="news.html" class="drawer-link">News & Events</a>
+            <a href="faculty.html" class="drawer-link">Faculty</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="admissions.html" class="btn btn-primary w-full text-center">Admission Enquiry</a>
+        </div>
+    </div>
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-bg-overlay"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge-slogan">
+                    <span class="badge-innovation"><i class="fa-solid fa-wand-magic-sparkles"></i> INNOVATION &
+                        DISCOVERY</span>
+                    <span class="badge-motto"><i class="fa-solid fa-tree-deciduous"></i> <span id="hero-motto">కిం కిం న
+                            సాధయతి కల్పలతేవ విద్యా</span></span>
+                </div>
+                <h1 class="hero-title">Nurturing Minds,<br><span class="highlight">Shaping Leaders</span></h1>
+                <p class="hero-desc">Sri Bhashyam Public School combines traditional moral values with state-of-the-art
+                    modern curriculum. Providing a foundation of academic brilliance, creative discovery, and
+                    disciplined leadership in Kadapa.</p>
+                <div class="hero-actions">
+                    <a href="#admission-inquiry" class="btn btn-large btn-gold"><i
+                            class="fa-solid fa-graduation-cap"></i> Admissions 2026-27</a>
+                    <a href="#about" class="btn btn-large btn-outline-white"><i class="fa-solid fa-circle-play"></i>
+                        Explore Campus</a>
+                </div>
+            </div>
+            <!-- Interactive Quick Inquiry Card inside Hero -->
+            <div class="hero-quick-card animate-slide-up">
+                <h3>Quick Admission Query</h3>
+                <p>Fill out the form below to receive immediate details.</p>
+                <form id="quick-inquiry-form" class="quick-form">
+                    <div class="form-group">
+                        <input type="text" id="quick-name" name="name" placeholder="Parent's Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="quick-phone" name="phone" placeholder="Mobile Number" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="quick-grade" name="grade" required>
+                            <option value="" disabled selected>Select Grade Seeking</option>
+                            <option value="Pre-Primary">Pre-Primary (Nursery - UKG)</option>
+                            <option value="Primary">Primary (Class I - V)</option>
+                            <option value="Middle School">Middle School (Class VI - VIII)</option>
+                            <option value="High School">High School (Class IX - X)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full"><i class="fa-solid fa-paper-plane"></i> Request
+                        Call Back</button>
+                    <div id="quick-form-response" class="form-response"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Showcase Bar -->
+    <section class="stats-section">
+        <div class="container stats-container">
+            <div class="stat-card" data-aos="fade-up">
+                <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number" data-target="20" id="stat-legacy">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Years of Legacy</span>
+                </div>
+            </div>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number" data-target="700" id="stat-students">0</span><span
+                        class="stat-plus">+</span>
+                    <span class="stat-label">Active Students</span>
+                </div>
+            </div>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number" data-target="60" id="stat-mentors">0</span><span
+                        class="stat-plus">+</span>
+                    <span class="stat-label">Expert Mentors</span>
+                </div>
+            </div>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-icon"><i class="fa-solid fa-percent"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number" data-target="100" id="stat-pass">0</span><span
+                        class="stat-percent">%</span>
+                    <span class="stat-label">STATE Board Results</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Home Overview Section -->
+    <section class="home-overview-section py-20 bg-light">
+        <div class="container">
+            <!-- Split Grid for Welcome Address & Quick Portals -->
+            <div class="home-split-grid">
+                <!-- Welcome Card -->
+                <div class="home-welcome-card glassmorphism reveal-left" id="homepage-welcome-card">
+                    <div class="card-glow-bg"></div>
+                    <span class="welcome-tag">Welcome Address</span>
+                    <h2>Message from Chairman Desk</h2>
+                    <p class="welcome-quote" id="home-chair-quote">"Our vision is to build an environment where student talent is discovered and channeled toward creative excellence."</p>
+                    <div class="welcome-author mt-6">
+                        <div class="author-img" id="home-chair-avatar" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600');"></div>
+                        <div>
+                            <h4 id="home-chair-name">Sri V. Naga Subba Reddy</h4>
+                            <span>Chairman, Sri Bhashyam Schools</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Portals Grid -->
+                <div class="home-portals-wrapper reveal-right">
+                    <div class="section-header-left">
+                        <span class="section-tag font-bold">Quick Portals</span>
+                        <h2 class="section-title">Explore Campus Offerings</h2>
+                        <p class="section-subtitle-desc">Select an option below to open full details in our immersive viewport.</p>
+                    </div>
+
+                    <div class="portals-grid mt-6">
+                        <a href="#about" class="portal-card">
+                            <div class="portal-icon red"><i class="fa-solid fa-circle-info"></i></div>
+                            <div style="flex: 1;">
+                                <h5>Our Philosophy</h5>
+                                <p>Learn about our Gurukul lineage and State Board curriculum.</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 0.85rem;"></i>
+                        </a>
+                        <a href="#academics" class="portal-card">
+                            <div class="portal-icon blue"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <div style="flex: 1;">
+                                <h5>Academics & Prep</h5>
+                                <p>Primary foundation to competitive NEET & JEE coachings.</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 0.85rem;"></i>
+                        </a>
+                        <a href="#fees" class="portal-card">
+                            <div class="portal-icon gold"><i class="fa-solid fa-calculator"></i></div>
+                            <div style="flex: 1;">
+                                <h5>Fee Estimator</h5>
+                                <p>Calculate admissions terms and transport rates instantly.</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 0.85rem;"></i>
+                        </a>
+                        <a href="#" id="home-portal-faculty" class="portal-card">
+                            <div class="portal-icon green"><i class="fa-solid fa-chalkboard-user"></i></div>
+                            <div style="flex: 1;">
+                                <h5>Educators Directory</h5>
+                                <p>Browse qualifications and details of our academic staff.</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 0.85rem;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section py-20">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag font-bold">About Our School</span>
+                <h2 class="section-title">Rooted in Tradition, Soaring in Innovation</h2>
+                <div class="title-bar"></div>
+            </div>
+
+            <div class="about-grid">
+                <!-- Image or Styled Box for Gurukul philosophy -->
+                <div class="about-image-wrapper reveal-left">
+                    <div class="about-accent-bg"></div>
+                    <div class="about-main-image" id="about-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=600');">
+                        <div class="about-image-overlay">
+                            <i class="fa-solid fa-quote-left"></i>
+                            <p class="overlay-quote" id="about-quote">"Education is not the filling of a pail, but the
+                                lighting of a fire."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="about-text-content reveal-right">
+                    <h3 class="about-heading" id="about-heading">Providing Quality Education in Kadapa Since 2006</h3>
+                    <p class="about-paragraph" id="about-text-1">Sri Bhashyam Public School has emerged as a beacon of
+                        academic rigor and moral values in Kadapa, Andhra Pradesh. Inspired by our rich heritage, our
+                        school name honors wisdom and the pursuit of truth. Our school emblem shows the Gurukul lineage:
+                        learning under the shades of the sacred banyan tree, symbolizing growth, support, and wisdom.
+                    </p>
+                    <p class="about-paragraph" id="about-text-2">We are recognized by the Government of Andhra Pradesh (AP State Board), offering comprehensive curriculum structures that spark curiosity and develop lifelong learning skills in both primary and high school students.</p>
+
+                    <!-- Feature Lists -->
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fa-solid fa-square-poll-vertical"></i></div>
+                            <div>
+                                <h4>Result-Oriented Academics</h4>
+                                <p>Consistently securing top ranks in regional and national boards.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fa-solid fa-flask"></i></div>
+                            <div>
+                                <h4>NEET & JEE Foundation</h4>
+                                <p>Specialized early-start curricula for engineering & medical streams.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="about.html" class="btn btn-primary mt-6">Read More About Us <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+
+            <!-- Vision & Mission Preview Card -->
+            <div style="max-width: 750px; margin: 40px auto 0 auto;">
+                <div class="message-card glassmorphism reveal-right" style="border-left-color: var(--primary-light) !important; width: 100%;">
+                    <span class="welcome-tag" style="background: rgba(59, 130, 246, 0.08); color: var(--primary-light); border-color: rgba(59, 130, 246, 0.15);">Our Purpose</span>
+                    <div class="vision-mission-preview-block" style="margin-top: 20px;">
+                        <h4 style="font-family: var(--font-heading); font-weight: 800; color: var(--primary-dark); margin-bottom: 8px;"><i class="fa-solid fa-eye" style="color: var(--primary-color);"></i> Our Vision</h4>
+                        <p id="vision-text" style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px;">To be recognized as a leading academy of excellence that produces ethical global citizens, innovative thinkers, and strong community leaders who are prepared to navigate the challenges of the future.</p>
+                        
+                        <h4 style="font-family: var(--font-heading); font-weight: 800; color: var(--primary-dark); margin-bottom: 8px;"><i class="fa-solid fa-bullseye" style="color: var(--secondary-color);"></i> Our Mission</h4>
+                        <p id="mission-text" style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px;">Our mission is to deliver comprehensive instruction through active methodologies, state-of-the-art facilities, and qualified educators. We strive to offer an inclusive learning ecosystem where every child receives custom encouragement.</p>
+                    </div>
+                    <a href="about.html#vision-mission" class="btn btn-xs btn-outline-white mt-2" style="border-color: var(--primary-color); color: var(--primary-color); display: inline-block;">View Core Values <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Academics Section -->
+    <section id="academics" class="academics-section py-20 bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag font-bold">Academic Spectrum</span>
+                <h2 class="section-title">Tailored Learning for Every Age</h2>
+                <div class="title-bar"></div>
+            </div>
+
+            <!-- Program Selector Tabs -->
+            <div class="academics-tabs-container reveal-element">
+                <div class="program-buttons">
+                    <button class="prog-btn active" data-program="little-champs">
+                        <span class="icon"><i class="fa-solid fa-child-reaching"></i></span>
+                        <span class="title">Little Champs</span>
+                        <span class="sub">Nursery to Class V</span>
+                    </button>
+                    <button class="prog-btn" data-program="middle">
+                        <span class="icon"><i class="fa-solid fa-book-open-reader"></i></span>
+                        <span class="title">Middle School</span>
+                        <span class="sub">Class VI to Class VIII</span>
+                    </button>
+                    <button class="prog-btn" data-program="high">
+                        <span class="icon"><i class="fa-solid fa-graduation-cap"></i></span>
+                        <span class="title">High School</span>
+                        <span class="sub">Class IX to Class X</span>
+                    </button>
+                    <button class="prog-btn" data-program="competitive">
+                        <span class="icon"><i class="fa-solid fa-medal"></i></span>
+                        <span class="title">NEET & JEE Prep</span>
+                        <span class="sub">Special Focus Batches</span>
+                    </button>
+                </div>
+
+                <div class="program-content-display" id="program-panels-container">
+                    <!-- Dynamically populated from server settings -->
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="academics.html" class="btn btn-primary">Read More Academics Details <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Facilities Section -->
+    <section id="facilities" class="facilities-section py-20">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag font-bold">Campus Infrastructure</span>
+                <h2 class="section-title">Providing Environments to Learn & Play</h2>
+                <div class="title-bar"></div>
+            </div>
+
+            <div class="facilities-grid reveal-element" id="facilities-grid">
+                <!-- Dynamically populated from server settings -->
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="facilities.html" class="btn btn-primary">Read More Facilities <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Parallax Callout Banner -->
+    <section class="parallax-callout-banner">
+        <div class="parallax-overlay"></div>
+        <div class="container callout-container reveal-element">
+            <span class="callout-tag">Sri Bhashyam Motto</span>
+            <h2>"Nurturing Global Competency with Traditional Moral Integrity"</h2>
+            <p>Every child is encouraged to discover academic depth and practical values in a collaborative community.</p>
+            <a href="#admission-inquiry" class="btn btn-gold mt-6"><i class="fa-solid fa-calendar-check"></i> Register for Admission</a>
+        </div>
+    </section>
+
+    <!-- Interactive Fee Estimator & Admission Timeline Section Preview -->
+    <section id="admissions-preview" class="fees-section py-20 bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag font-bold">Admissions 2026-27</span>
+                <h2 class="section-title">Join Sri Bhashyam Family</h2>
+                <p class="section-lead-desc">Admissions are open for the academic year 2026-27 from Nursery to Class X. Explore our guidelines, age criteria, and standard fees structure.</p>
+                <div class="title-bar"></div>
+            </div>
+
+            <div class="about-features" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+                <div class="feature-item glassmorphism" style="padding: 30px; border-radius: var(--border-radius-md); background: var(--bg-white);">
+                    <div class="feature-icon" style="margin-bottom: 20px;"><i class="fa-solid fa-file-invoice-dollar" style="font-size: 2rem;"></i></div>
+                    <div>
+                        <h4 style="font-size: 1.25rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px;">Flexible Fee Structures</h4>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Our school offers highly transparent and standard school fees with sibling discounts and custom transportation matrices starting from ₹28,000 per annum.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item glassmorphism" style="padding: 30px; border-radius: var(--border-radius-md); background: var(--bg-white);">
+                    <div class="feature-icon" style="margin-bottom: 20px;"><i class="fa-solid fa-route" style="font-size: 2rem;"></i></div>
+                    <div>
+                        <h4 style="font-size: 1.25rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px;">Simple Admission Process</h4>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Secure a seat in 4 easy steps: submit an online enquiry, schedule a friendly parent interaction or test, complete document checks, and confirm enrollment.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="admissions.html" class="btn btn-primary">Estimate Fees & Apply Now <i class="fa-solid fa-calculator" style="margin-left: 5px;"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Gallery (With Filters) -->
+    <section id="gallery" class="gallery-section py-20">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag font-bold">Visual Showcase</span>
+                <h2 class="section-title">Life at Sri Bhashyam</h2>
+                <div class="title-bar"></div>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All Photos</button>
+                <button class="filter-btn" data-filter="campus">Campus & Labs</button>
+                <button class="filter-btn" data-filter="sports">Sports Arena</button>
+                <button class="filter-btn" data-filter="events">Festivals & Events</button>
+                <button class="filter-btn" data-filter="academic">Classrooms</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid mt-10 reveal-element" id="gallery-grid">
+                <!-- Dynamically populated from server settings -->
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="gallery.html" class="btn btn-primary">View Full Gallery <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Lightbox Modal for Gallery Zoom -->
+    <div class="lightbox-modal" id="lightbox-modal">
+        <button class="lightbox-close" id="lightbox-close"><i class="fa-solid fa-xmark"></i></button>
+        <img src="" id="lightbox-img" alt="Zoomed View">
+    </div>
+
+    <!-- Latest News & Upcoming Events Section -->
+    <section id="news-preview" class="news-section py-20">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag font-bold">Announcements</span>
+                <h2 class="section-title">Latest News & Events</h2>
+                <div class="title-bar"></div>
+            </div>
+
+            <div class="news-grid-layout" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 40px;">
+                <!-- News Column -->
+                <div>
+                    <h3 style="font-family: var(--font-heading); font-weight: 800; color: var(--primary-dark); margin-bottom: 20px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px;"><i class="fa-solid fa-newspaper" style="color: var(--primary-color); margin-right: 8px;"></i> Latest Announcements</h3>
+                    
+                    <div id="home-notices-container" style="display: flex; flex-direction: column; gap: 20px;">
+                        <div class="news-preview-card" style="background: var(--bg-white); padding: 20px; border-radius: var(--border-radius-sm); border-left: 4px solid var(--primary-light); box-shadow: var(--shadow-sm);">
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;"><i class="fa-solid fa-calendar-day"></i> July 10, 2026</span>
+                            <h4 style="font-family: var(--font-heading); margin: 8px 0; font-size: 1.05rem;">Admissions Open for Academic Year 2026-27</h4>
+                            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0;">Registration inquiry forms are now active for Nursery to Grade X classes. Early bird sibling discounts apply.</p>
+                        </div>
+                        <div class="news-preview-card" style="background: var(--bg-white); padding: 20px; border-radius: var(--border-radius-sm); border-left: 4px solid var(--secondary-light); box-shadow: var(--shadow-sm);">
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;"><i class="fa-solid fa-calendar-day"></i> July 05, 2026</span>
+                            <h4 style="font-family: var(--font-heading); margin: 8px 0; font-size: 1.05rem;">Excellent State Board results record achieved</h4>
+                            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0;">Our Class X students secured 100% pass rates in the board examinations with multiple perfect GPA scores.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Events Column -->
+                <div>
+                    <h3 style="font-family: var(--font-heading); font-weight: 800; color: var(--primary-dark); margin-bottom: 20px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px;"><i class="fa-solid fa-calendar-check" style="color: var(--secondary-color); margin-right: 8px;"></i> Upcoming Campus Events</h3>
+                    
+                    <div id="home-events-container" style="display: flex; flex-direction: column; gap: 20px;">
+                        <div style="display: flex; gap: 15px; align-items: flex-start; background: var(--bg-white); padding: 20px; border-radius: var(--border-radius-sm); box-shadow: var(--shadow-sm);">
+                            <div style="background: var(--primary-light); color: #fff; padding: 10px; border-radius: var(--border-radius-sm); text-align: center; min-width: 60px;">
+                                <span style="display: block; font-size: 1.2rem; font-weight: 800; line-height: 1; color: #fff;">15</span>
+                                <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 600; color: #fff;">Aug</span>
+                            </div>
+                            <div>
+                                <h4 style="font-family: var(--font-heading); margin: 0 0 5px 0; font-size: 1.05rem;">Independence Day Celebration</h4>
+                                <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0;">Flag hoisting ceremony followed by patriotic cultural acts by the Little Champs group.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 15px; align-items: flex-start; background: var(--bg-white); padding: 20px; border-radius: var(--border-radius-sm); box-shadow: var(--shadow-sm);">
+                            <div style="background: var(--secondary-light); color: #fff; padding: 10px; border-radius: var(--border-radius-sm); text-align: center; min-width: 60px;">
+                                <span style="display: block; font-size: 1.2rem; font-weight: 800; line-height: 1; color: #fff;">05</span>
+                                <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 600; color: #fff;">Sep</span>
+                            </div>
+                            <div>
+                                <h4 style="font-family: var(--font-heading); margin: 0 0 5px 0; font-size: 1.05rem;">Teachers' Day Awards & Meet</h4>
+                                <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0;">Special student council program honoring the dedications of our senior subject mentors.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="news.html" class="btn btn-primary">Read More Notices & Events <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section py-20 bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag font-bold">Feedback</span>
+                <h2 class="section-title">What Parents Say</h2>
+                <div class="title-bar"></div>
+            </div>
+
+            <div class="carousel-container mt-10">
+                <div class="carousel-track-wrapper">
+                    <div class="carousel-track" id="carousel-track">
+                        <!-- Dynamically populated from server settings -->
+                    </div>
+                </div>
+
+                <!-- Carousel navigation -->
+                <div class="carousel-nav">
+                    <button class="car-arrow prev" id="car-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="carousel-dots" id="carousel-dots">
+                        <!-- Dynamically populated -->
+                    </div>
+
+                    <button class="car-arrow next" id="car-next"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Inquiry & Contact Section -->
+    <section id="contact" class="contact-section py-20">
+        <div class="container">
+            <div class="contact-layout">
+                <!-- Address Details Box -->
+                <div class="contact-info-panel">
+                    <span class="badge-contact">Get in Touch</span>
+                    <h2>Contact Information</h2>
+                    <p>Have questions about admissions, fees, or curriculum details? Walk into our campus office or drop
+                        us a query.</p>
+
+                    <div class="contact-methods">
+                        <div class="method-card">
+                            <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <h5>Campus Address</h5>
+                                <p id="contact-address">Sri Bhashyam Public School, 45/150-12, Kadapa Rd, near S.V. College of Engineering, TarakaRama Nagar, Nagarajupeta, Andhra Pradesh 516001</p>
+                            </div>
+                        </div>
+
+                        <div class="method-card">
+                            <div class="icon"><i class="fa-solid fa-phone-volume"></i></div>
+                            <div>
+                                <h5>Admissions Office</h5>
+                                <p><span id="contact-phone">+91 9160160690</span>, <span id="contact-mobile">+91 9515754762</span></p>
+                            </div>
+                        </div>
+
+                        <div class="method-card">
+                            <div class="icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                            <div>
+                                <h5>General Queries</h5>
+                                <p id="contact-email">sribhashyamforyou@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Visual styled mini-map card -->
+                    <a href="https://www.google.com/maps/search/?api=1&query=Sri+Bhashyam+Public+School+45%2F150-12+Kadapa+Rd+Nagarajupeta+Kadapa+Andhra+Pradesh+516001" target="_blank" rel="noopener noreferrer" class="map-card" style="display: block; text-decoration: none;">
+                        <div class="map-placeholder"
+                            style="background-image: radial-gradient(circle at center, #3b82f6 0%, #1e3a8a 100%);">
+                            <div class="map-pin"><i class="fa-solid fa-location-pin"></i></div>
+                            <span class="map-text">Sri Bhashyam Public School, Kadapa</span>
+                            <span class="map-sub">View on Google Maps</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Registration Inquiry Form -->
+                <div class="inquiry-form-panel glassmorphism" id="admission-inquiry">
+                    <h3>Admission Inquiry Form</h3>
+                    <p>Academic Session 2026 - 2027</p>
+                    <form id="main-inquiry-form" class="inquiry-form">
+                        <input type="hidden" name="type" value="Admission Inquiry">
+
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="form-name">Student Name *</label>
+                                <input type="text" id="form-name" name="name" required placeholder="e.g. Rohith Kumar">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="form-email">Parent Email</label>
+                                <input type="email" id="form-email" name="email" placeholder="e.g. parent@gmail.com">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="form-phone">Mobile Number *</label>
+                                <input type="tel" id="form-phone" name="phone" required placeholder="10-digit number">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="form-grade">Seeking Class/Grade *</label>
+                                <select id="form-grade" name="grade" required>
+                                    <option value="" disabled selected>Choose Grade</option>
+                                    <option value="Nursery">Nursery</option>
+                                    <option value="LKG">LKG</option>
+                                    <option value="UKG">UKG</option>
+                                    <option value="Class I">Class I</option>
+                                    <option value="Class II">Class II</option>
+                                    <option value="Class III">Class III</option>
+                                    <option value="Class IV">Class IV</option>
+                                    <option value="Class V">Class V</option>
+                                    <option value="Class VI">Class VI</option>
+                                    <option value="Class VII">Class VII</option>
+                                    <option value="Class VIII">Class VIII</option>
+                                    <option value="Class IX">Class IX</option>
+                                    <option value="Class X">Class X</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="form-message">Describe Student's Academic Background / Message</label>
+                            <textarea id="form-message" name="message" rows="4"
+                                placeholder="Mention previous school details, hobbies or special learning needs if any..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-gold btn-block" id="form-submit-btn">
+                            <span class="btn-text"><i class="fa-solid fa-arrow-right-to-bracket"></i> Register Admission
+                                Query</span>
+                            <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i>
+                                Submitting...</span>
+                        </button>
+
+                        <div id="main-form-response" class="form-response"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <!-- Col 1: About -->
+            <div class="footer-col brand-col">
+                <div class="footer-logo">
+                    <span class="title">SRI BHASHYAM</span>
+                    <span class="sub">PUBLIC SCHOOL</span>
+                </div>
+                <p>Nurturing young minds in Kadapa since 2006. Leading State Board and competitive examination preparation
+                    integrated with traditional moral development.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/share/1BbigC9EZq/" target="_blank" rel="noopener noreferrer" title="Follow us on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/sribhashyam_public_school?igsh=OGdkc2U5NWY3cGNw" target="_blank" rel="noopener noreferrer" title="Follow us on Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@SRIBHASHYAMPUBLICSCHOOLKADAPA" target="_blank" rel="noopener noreferrer" title="Subscribe on YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Col 2: Academics Links -->
+            <div class="footer-col">
+                <h4>Academics</h4>
+                <ul class="footer-links">
+                    <li><a href="academics.html"><i class="fa-solid fa-chevron-right"></i> Little Champs (Primary)</a></li>
+                    <li><a href="academics.html"><i class="fa-solid fa-chevron-right"></i> Middle School Curriculum</a></li>
+                    <li><a href="academics.html"><i class="fa-solid fa-chevron-right"></i> Secondary High School</a></li>
+                    <li><a href="academics.html"><i class="fa-solid fa-chevron-right"></i> NEET & JEE integrated</a></li>
+                    <li><a href="admissions.html"><i class="fa-solid fa-chevron-right"></i> Fee Distributions</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Quick Links -->
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home Campus</a></li>
+                    <li><a href="about.html"><i class="fa-solid fa-chevron-right"></i> Founder's Desk</a></li>
+                    <li><a href="facilities.html"><i class="fa-solid fa-chevron-right"></i> Science & Computer Labs</a></li>
+                    <li><a href="gallery.html"><i class="fa-solid fa-chevron-right"></i> School Gallery</a></li>
+                    <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Locate Campus</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Newsletter -->
+            <div class="footer-col">
+                <h4>School Circulars</h4>
+                <p>Subscribe to receive news updates, holiday events schedules, and admission openings direct to your
+                    email.</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" required>
+                    <button type="submit" class="btn btn-gold"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+                <div id="newsletter-response" class="newsletter-response"></div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <div class="container bottom-container">
+                <p>&copy; 2026 Sri Bhashyam Public School, Kadapa. All Rights Reserved.</p>
+                <div class="bottom-links">
+                    <a href="admin.html" target="_blank" style="color: var(--accent-light); font-weight: 700;"><i
+                            class="fa-solid fa-lock"></i> Admin Portal</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Sitemap</a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main Interaction Logic Script -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

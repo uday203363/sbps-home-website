@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard Portal | Sri Bhashyam Public School</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+
+    <!-- Login Area Container -->
+    <div class="admin-login-wrapper" id="login-section">
+        <div class="login-card glassmorphism animate-slide-up">
+            <div class="login-header">
+                <!-- SVG Emblem Logo -->
+                <svg viewBox="0 0 300 300" width="80" height="80">
+                    <rect x="5" y="5" width="290" height="290" fill="none" stroke="#d32f2f" stroke-width="4"/>
+                    <circle cx="150" cy="140" r="115" fill="#ffeb3b" stroke="#000000" stroke-width="3"/>
+                    <circle cx="150" cy="140" r="95" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+                    <line x1="60" y1="195" x2="240" y2="195" stroke="#000000" stroke-width="2"/>
+                    <path d="M 60,195 L 70,222 L 150,232 L 230,222 L 240,195 Z" fill="#ffeb3b" stroke="#000" stroke-width="1.5"/>
+                    <rect x="5" y="248" width="290" height="42" fill="#d32f2f"/>
+                    <text x="150" y="277" font-family="'Outfit', sans-serif" font-size="24" font-weight="900" fill="#ffffff" letter-spacing="3" text-anchor="middle">SRI BHASHYAM</text>
+                </svg>
+                <h2>SBPS Admin Portal</h2>
+                <p>Sign in to manage queries, edit fee plans and update contacts.</p>
+            </div>
+            
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="login-username"><i class="fa-solid fa-user"></i> Username</label>
+                    <input type="text" id="login-username" required placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <label for="login-password"><i class="fa-solid fa-lock"></i> Password</label>
+                    <input type="password" id="login-password" required placeholder="Enter password">
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-full mt-6">
+                    <span class="btn-text"><i class="fa-solid fa-right-to-bracket"></i> Authenticate Login</span>
+                    <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i> Loading...</span>
+                </button>
+                <div id="login-response" class="form-response"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Portal Container (Hidden by default) -->
+    <div class="admin-dashboard-wrapper" id="dashboard-section" style="display: none;">
+        <!-- Side Navigation bar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <img src="logo.png" alt="Logo" class="sidebar-logo">
+                <div class="sidebar-info">
+                    <h4>Sri Bhashyam</h4>
+                    <span>Admin Panel</span>
+                </div>
+            </div>
+            <div class="sidebar-nav">
+                <button class="nav-btn active" data-tab="inquiries">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                    <span>Inquiry Messages</span>
+                    <span class="badge" id="inquiry-count">0</span>
+                </button>
+                <button class="nav-btn" data-tab="details">
+                    <i class="fa-solid fa-school"></i>
+                    <span>School Details</span>
+                </button>
+                <button class="nav-btn" data-tab="fees-panel">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>Fee Structure Settings</span>
+                </button>
+                <button class="nav-btn" data-tab="admins">
+                    <i class="fa-solid fa-users-gear"></i>
+                    <span>Manage Admins</span>
+                </button>
+                <button class="nav-btn" data-tab="cms">
+                    <i class="fa-solid fa-file-pen"></i>
+                    <span>Website CMS Editor</span>
+                </button>
+                <button class="nav-btn" data-tab="news-events">
+                    <i class="fa-solid fa-newspaper"></i>
+                    <span>News & Events Manager</span>
+                </button>
+            </div>
+            <div class="sidebar-footer">
+                <div class="admin-profile">
+                    <i class="fa-solid fa-circle-user profile-avatar"></i>
+                    <div>
+                        <h5 id="admin-name">Super Admin</h5>
+                        <span>Authorized Session</span>
+                    </div>
+                </div>
+                <button class="btn btn-gold btn-block" id="admin-logout-btn">
+                    <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard Viewport -->
+        <main class="dashboard-main">
+            <header class="dashboard-navbar">
+                <div class="navbar-left">
+                    <h2 id="view-title">Inquiry Messages</h2>
+                    <p id="view-subtitle">Monitor and review prospective admission and general inquiries.</p>
+                </div>
+                <div class="navbar-right">
+                    <div class="session-badge"><i class="fa-solid fa-shield-halved"></i> Secure Mode</div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                
+                <!-- View 1: Inquiries -->
+                <div class="view-panel active" id="view-inquiries">
+                    <!-- Stat Cards Row -->
+                    <div class="dashboard-stats-row">
+                        <div class="stat-overview-card">
+                            <div class="icon-wrapper blue"><i class="fa-solid fa-envelope-open-text"></i></div>
+                            <div class="stat-details">
+                                <span class="label">Inquiries Received</span>
+                                <h3 id="stat-card-inquiries">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-overview-card">
+                            <div class="icon-wrapper gold"><i class="fa-solid fa-users-gear"></i></div>
+                            <div class="stat-details">
+                                <span class="label">Active Admins</span>
+                                <h3 id="stat-card-admins">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-overview-card">
+                            <div class="icon-wrapper green"><i class="fa-solid fa-images"></i></div>
+                            <div class="stat-details">
+                                <span class="label">Gallery Photos</span>
+                                <h3 id="stat-card-gallery">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-container glassmorphism">
+                        <div class="table-header-toolbar">
+                            <input type="text" id="inquiry-search" placeholder="Search inquiries by name, mobile or class...">
+                            <span class="refresh-indicator" id="refresh-inquiries"><i class="fa-solid fa-arrows-rotate"></i> Reload Data</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="dashboard-table" id="inquiries-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date Submitted</th>
+                                        <th>Student/Parent</th>
+                                        <th>Contact Info</th>
+                                        <th>Grade Seeking</th>
+                                        <th>Query Description</th>
+                                        <th>Type</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="inquiries-tbody">
+                                    <tr>
+                                        <td colspan="7" class="text-center">Loading queries database...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View 2: School Details -->
+                <div class="view-panel" id="view-details">
+                    <div class="settings-card glassmorphism">
+                        <h3>Update Campus Details</h3>
+                        <p class="section-desc">Edits made here reflect immediately on the top bar, contact block, and headers of the homepage.</p>
+                        
+                        <form id="settings-details-form">
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="set-phone">Landline Number</label>
+                                    <input type="text" id="set-phone" required placeholder="+91 8562 245678">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="set-mobile">Admissions Mobile</label>
+                                    <input type="text" id="set-mobile" required placeholder="+91 94402 78564">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="set-email">Official Email</label>
+                                <input type="email" id="set-email" required placeholder="info@sribhashyamschool.edu.in">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="set-address">Campus Address</label>
+                                <textarea id="set-address" required rows="3" placeholder="Enter complete school address"></textarea>
+                            </div>
+                            
+                             <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="set-motto">Telugu Motto Slogan</label>
+                                    <input type="text" id="set-motto" required placeholder="కిం కిం న సాధయతి కల్పలతేవ విద్యా">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="set-slogan">Sanskrit English Transliteration</label>
+                                    <input type="text" id="set-slogan" required placeholder="Kim Kim Na Sadhayati Kalpalateva Vidya">
+                                </div>
+                            </div>
+                            
+                            <!-- School Statistics & Age Constraints -->
+                            <h4 class="settings-subsection-title mt-10"><i class="fa-solid fa-chart-line"></i> Key Statistics & Constraints</h4>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="set-stat-legacy">Years of Legacy</label>
+                                    <input type="number" id="set-stat-legacy" required>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="set-stat-students">Active Students Count</label>
+                                    <input type="number" id="set-stat-students" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="set-stat-mentors">Expert Mentors Count</label>
+                                    <input type="number" id="set-stat-mentors" required>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="set-stat-pass">State Board Pass Rate (%)</label>
+                                    <input type="number" id="set-stat-pass" required min="0" max="100">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row mt-6">
+                                <div class="form-group col-6">
+                                    <label for="set-constraint-nursery">Nursery Minimum Age Requirement</label>
+                                    <input type="number" id="set-constraint-nursery" required min="1" max="10">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="set-constraint-class1">Class I Minimum Age Requirement</label>
+                                    <input type="number" id="set-constraint-class1" required min="1" max="15">
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary mt-6">
+                                <span class="btn-text"><i class="fa-solid fa-floppy-disk"></i> Save School Details</span>
+                                <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i> Saving...</span>
+                            </button>
+                            <div id="details-form-response" class="form-response"></div>
+                        </form>
+
+                    </div>
+                </div>
+
+                <!-- View 3: Fee Settings -->
+                <div class="view-panel" id="view-fees-panel">
+                    <div class="settings-card glassmorphism">
+                        <h3>Update Fee Calculator Parameters</h3>
+                        <p class="section-desc">Edit the parameters used by the dynamic homepage Fee Estimator.</p>
+                        
+                        <form id="settings-fees-form">
+                            <!-- Matrix per Grade -->
+                            <h4 class="settings-subsection-title"><i class="fa-solid fa-graduation-cap"></i> Fees Matrix by Grade Level</h4>
+                            
+                            <div class="fee-tier-box">
+                                <h5>Pre-Primary Tier (Nursery - UKG)</h5>
+                                <div class="form-row">
+                                    <div class="form-group col-4">
+                                        <label for="fee-pre-admission">Admission Fee (₹)</label>
+                                        <input type="number" id="fee-pre-admission" required>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label for="fee-pre-tuition">Tuition Fee (₹)</label>
+                                        <input type="number" id="fee-pre-tuition" required>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label for="fee-pre-lab">Library & Lab (₹)</label>
+                                        <input type="number" id="fee-pre-lab" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="fee-tier-box">
+                                <h5>Primary Tier (Class I - V)</h5>
+                                <div class="form-row">
+                                    <div class="form-group col-4">
+                                        <label for="fee-pri-admission">Admission Fee (₹)</label>
+                                        <input type="number" id="fee-pri-admission" required>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label for="fee-pri-tuition">Tuition Fee (₹)</label>
+                                        <input type="number" id="fee-pri-tuition" required>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label for="fee-pri-lab">Library & Lab (₹)</label>
+                                        <input type="number" id="fee-pri-lab" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="fee-tier-box">
+                                <h5>Middle School Tier (Class VI - VIII)</h5>
+                                <div class="form-row">
+                                    <div class="form-group col-4">
+                                        <label for="fee-mid-admission">Admission Fee (₹)</label>
+                                        <input type="number" id="fee-mid-admission" required>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label for="fee-mid-tuition">Tuition Fee (₹)</label>
+                                        <input type="number" id="fee-mid-tuition" required>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label for="fee-mid-lab">Library & Lab (₹)</label>
+                                        <input type="number" id="fee-mid-lab" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="fee-tier-box">
+                                <h5>High School Tier (Class IX - X)</h5>
+                                <div class="form-row">
+                                    <div class="form-group col-4">
+                                        <label for="fee-high-admission">Admission Fee (₹)</label>
+                                        <input type="number" id="fee-high-admission" required>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label for="fee-high-tuition">Tuition Fee (₹)</label>
+                                        <input type="number" id="fee-high-tuition" required>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label for="fee-high-lab">Library & Lab (₹)</label>
+                                        <input type="number" id="fee-high-lab" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Transport & Sibling config -->
+                            <h4 class="settings-subsection-title mt-10"><i class="fa-solid fa-bus"></i> Transport & Discount Rates</h4>
+                            <div class="form-row">
+                                <div class="form-group col-4">
+                                    <label for="fee-trans-under5">Under 5km Bus Fee (₹)</label>
+                                    <input type="number" id="fee-trans-under5" required>
+                                </div>
+                                <div class="form-group col-4">
+                                    <label for="fee-trans-above5">5km to 10+km Bus Fee (₹)</label>
+                                    <input type="number" id="fee-trans-above5" required>
+                                </div>
+                                <div class="form-group col-4">
+                                    <label for="fee-discount-sibling">Sibling Discount (%)</label>
+                                    <input type="number" id="fee-discount-sibling" required min="0" max="100">
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary mt-6">
+                                <span class="btn-text"><i class="fa-solid fa-floppy-disk"></i> Save Fee Structure</span>
+                                <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i> Saving...</span>
+                            </button>
+                            <div id="fees-form-response" class="form-response"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- View 4: Administrators Management -->
+                <div class="view-panel" id="view-admins">
+                    <div class="admin-panel-split-layout">
+                        <!-- Left: Add Admin Form -->
+                        <div class="settings-card glassmorphism">
+                            <h3>Register New Administrator</h3>
+                            <p class="section-desc">Create administrative credentials for additional staff members.</p>
+                            
+                            <form id="add-admin-form">
+                                <div class="form-group">
+                                    <label for="new-admin-name">Full Name</label>
+                                    <input type="text" id="new-admin-name" required placeholder="e.g. Ramanuja Acharya">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-admin-user">Username</label>
+                                    <input type="text" id="new-admin-user" required placeholder="Enter login username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-admin-pass">Access Password</label>
+                                    <input type="password" id="new-admin-pass" required placeholder="Enter secure password">
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary mt-6">
+                                    <span class="btn-text"><i class="fa-solid fa-user-plus"></i> Add Admin User</span>
+                                    <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i> Registering...</span>
+                                </button>
+                                <div id="add-admin-response" class="form-response"></div>
+                            </form>
+                        </div>
+                        
+                        <!-- Right: Admins List -->
+                        <div class="settings-card glassmorphism">
+                            <h3>Active Administrators</h3>
+                            <p class="section-desc">Accounts authorized to access the dashboard portal.</p>
+                            
+                            <div class="table-responsive">
+                                <table class="dashboard-table" id="admins-list-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Username</th>
+                                            <th>Role</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="admins-list-tbody">
+                                        <tr>
+                                            <td colspan="3" class="text-center">Fetching user credentials...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View 5: CMS Editor -->
+                <div class="view-panel" id="view-cms">
+                    <div class="settings-card glassmorphism">
+                        <h3>Update Website Copy Content</h3>
+                        <p class="section-desc">Modify about copy, mission lists, and the chairman's welcome address shown on the homepage.</p>
+                        
+                        <form id="settings-cms-form">
+                            <!-- About Us Section -->
+                            <h4 class="settings-subsection-title"><i class="fa-solid fa-address-card"></i> About Us Section</h4>
+                            <div class="form-group">
+                                <label for="cms-about-heading">About Heading</label>
+                                <input type="text" id="cms-about-heading" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cms-about-text1">About Paragraph 1</label>
+                                <textarea id="cms-about-text1" required rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="cms-about-text2">About Paragraph 2</label>
+                                <textarea id="cms-about-text2" required rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="cms-about-quote">About Overlay Quote</label>
+                                <input type="text" id="cms-about-quote" required>
+                            </div>
+                            
+                            <!-- Chairman Section -->
+                            <h4 class="settings-subsection-title mt-10"><i class="fa-solid fa-user-tie"></i> Chairman Desk</h4>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="cms-chairman-name">Chairman Name</label>
+                                    <input type="text" id="cms-chairman-name" required>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="cms-chairman-role">Chairman Designation Role</label>
+                                    <input type="text" id="cms-chairman-role" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cms-chairman-avatar">Chairman Photo Avatar URL</label>
+                                <input type="text" id="cms-chairman-avatar" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cms-chairman-message">Chairman Desk Message</label>
+                                <textarea id="cms-chairman-message" required rows="4"></textarea>
+                            </div>
+
+
+                            
+                            <!-- Vision / Mission Section -->
+                            <h4 class="settings-subsection-title mt-10"><i class="fa-solid fa-eye"></i> Vision & Mission Statements</h4>
+                            <div class="form-group">
+                                <label for="cms-vision-text">Our Vision Statement</label>
+                                <textarea id="cms-vision-text" required rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="cms-mission-text">Our Mission Statement</label>
+                                <textarea id="cms-mission-text" required rows="3"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary mt-6">
+                                <span class="btn-text"><i class="fa-solid fa-floppy-disk"></i> Save Copy Content</span>
+                                <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i> Saving...</span>
+                            </button>
+                            <div id="cms-form-response" class="form-response"></div>
+                        </form>
+                    </div>
+
+                    <!-- Manage Announcements -->
+                    <div class="settings-card glassmorphism mt-10">
+                        <h3>Manage Scrolling Announcements</h3>
+                        <p class="section-desc">Add or remove alerts shown in the live ticker on the homepage.</p>
+                        
+                        <form id="announcements-manager-form">
+                            <div class="form-group">
+                                <label for="new-announcement-text">New Announcement Alert</label>
+                                <div style="display: flex; gap: 12px; align-items: center; margin-top: 6px;">
+                                    <input type="text" id="new-announcement-text" placeholder="e.g. Admissions open for academic year 2026-27" style="flex: 1; margin: 0; padding: 12px;" required>
+                                    <button type="submit" class="btn btn-primary" style="margin: 0; white-space: nowrap; height: 46px; display: flex; align-items: center; justify-content: center; padding: 0 20px;"><i class="fa-solid fa-plus" style="margin-right: 6px;"></i> Add Alert</button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <div class="table-responsive mt-6">
+                            <table class="dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>Current Scrolling Alerts</th>
+                                        <th style="width: 120px; text-align: center;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="announcements-list-tbody">
+                                    <tr>
+                                        <td colspan="2" class="text-center">Loading alerts list...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Manage Faculty Members -->
+                    <div class="settings-card glassmorphism mt-10">
+                        <h3>Manage Faculty Directory</h3>
+                        <p class="section-desc">Add or remove educators featured on the homepage community section.</p>
+                        
+                        <form id="faculty-manager-form" class="mt-6">
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="fac-member-name">Faculty Name</label>
+                                    <input type="text" id="fac-member-name" required placeholder="e.g. Smt. S. Lakshmi Devi">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="fac-member-role">Designation Role</label>
+                                    <input type="text" id="fac-member-role" required placeholder="e.g. Dean of Academics">
+                                </div>
+                            </div>
+                            <div class="form-row mt-4">
+                                <div class="form-group col-12">
+                                    <label for="fac-member-msg">Faculty Personal Quote / Message</label>
+                                    <textarea id="fac-member-msg" rows="2" placeholder="e.g. Dedicated to fostering academic excellence, moral values, and student success."></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row mt-4">
+                                <div class="form-group col-12">
+                                    <label for="fac-member-photo">Select Profile Photo</label>
+                                    <input type="file" id="fac-member-photo" accept="image/*" required style="padding: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-6">
+                                <span class="btn-text"><i class="fa-solid fa-plus"></i> Add Educator Member</span>
+                                <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i> Uploading...</span>
+                            </button>
+                            <div id="faculty-manager-response" class="form-response"></div>
+                        </form>
+
+                        <h4 class="settings-subsection-title mt-10"><i class="fa-solid fa-chalkboard-user"></i> Active Educators Directory</h4>
+                        <div id="admin-faculty-preview-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; margin-top: 20px;">
+                            <!-- Dynamic preview -->
+                        </div>
+                    </div>
+
+                    <!-- Manage Student Achievers -->
+                    <div class="settings-card glassmorphism mt-10">
+                        <h3>Manage Student Achievers</h3>
+                        <p class="section-desc">Add or remove students/achievers featured on the homepage community section.</p>
+                        
+                        <form id="student-manager-form" class="mt-6">
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="stud-member-name">Student Name</label>
+                                    <input type="text" id="stud-member-name" required placeholder="e.g. Master P. Sai Charan">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="stud-member-role">Achievement / Designation</label>
+                                    <input type="text" id="stud-member-role" required placeholder="e.g. Student Council President">
+                                </div>
+                            </div>
+                            <div class="form-row mt-4">
+                                <div class="form-group col-12">
+                                    <label for="stud-member-msg">Student Personal Quote / Message</label>
+                                    <textarea id="stud-member-msg" rows="2" placeholder="e.g. Striving for academic excellence, leadership, and active participation."></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row mt-4">
+                                <div class="form-group col-12">
+                                    <label for="stud-member-photo">Select Profile Photo</label>
+                                    <input type="file" id="stud-member-photo" accept="image/*" required style="padding: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-6">
+                                <span class="btn-text"><i class="fa-solid fa-plus"></i> Add Student Achiever</span>
+                                <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i> Uploading...</span>
+                            </button>
+                            <div id="student-manager-response" class="form-response"></div>
+                        </form>
+
+                        <h4 class="settings-subsection-title mt-10"><i class="fa-solid fa-award"></i> Active Achievers Directory</h4>
+                        <div id="admin-student-preview-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; margin-top: 20px;">
+                            <!-- Dynamic preview -->
+                        </div>
+                    </div>
+
+                    <!-- Manage Gallery Photos -->
+                    <div class="settings-card glassmorphism mt-10">
+                        <h3>Manage Gallery Photos</h3>
+                        <p class="section-desc">Upload new images to display in the homepage gallery section.</p>
+                        
+                        <form id="gallery-upload-form" class="mt-6">
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="gallery-photo-file">Select Image File</label>
+                                    <input type="file" id="gallery-photo-file" accept="image/*" required style="padding: 8px;">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="gallery-photo-category">Category</label>
+                                    <select id="gallery-photo-category" required style="padding: 12px;">
+                                        <option value="campus">Campus & Labs</option>
+                                        <option value="sports">Sports Arena</option>
+                                        <option value="events">Festivals & Events</option>
+                                        <option value="academic">Classrooms</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row mt-4">
+                                <div class="form-group col-12">
+                                    <label for="gallery-photo-title">Photo Title / Caption</label>
+                                    <input type="text" id="gallery-photo-title" required placeholder="e.g. Students in biology laboratory">
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary mt-6">
+                                <span class="btn-text"><i class="fa-solid fa-cloud-arrow-up"></i> Upload & Add to Gallery</span>
+                                <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i> Uploading...</span>
+                            </button>
+                            <div id="gallery-upload-response" class="form-response"></div>
+                        </form>
+                        
+                        <h4 class="settings-subsection-title mt-10"><i class="fa-solid fa-images"></i> Homepage Photo Gallery Grid</h4>
+                        <div id="admin-gallery-preview-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; margin-top: 20px;">
+                            <!-- Previews dynamically populated -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View 6: News & Events Manager -->
+                <div class="view-panel" id="view-news-events">
+                    <!-- Academic Circulars & Notices -->
+                    <div class="settings-card glassmorphism">
+                        <h3><i class="fa-solid fa-bullhorn"></i> Academic Circulars & Notices</h3>
+                        <p class="section-desc">Add or remove notices published on the News & Events page.</p>
+
+                        <form id="notice-manager-form" class="mt-6">
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="notice-date"><i class="fa-solid fa-calendar-days"></i> Select Notice Date</label>
+                                    <input type="date" id="notice-date" required style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--border-color); background: #fff; color: #0f172a; font-family: inherit;">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="notice-title">Notice Title</label>
+                                    <input type="text" id="notice-title" required placeholder="e.g. Mid-Term Examination Schedule">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="notice-desc">Notice Description</label>
+                                <textarea id="notice-desc" required rows="3" placeholder="Enter complete notice details..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="notice-link">Optional Action Link URL</label>
+                                <input type="text" id="notice-link" placeholder="e.g. admissions.html (Leave blank if none)">
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-4">
+                                <span class="btn-text"><i class="fa-solid fa-plus"></i> Add Circular Notice</span>
+                                <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i> Saving...</span>
+                            </button>
+                            <div id="notice-manager-response" class="form-response"></div>
+                        </form>
+
+                        <h4 class="settings-subsection-title mt-10"><i class="fa-solid fa-list-check"></i> Active Circulars & Notices List</h4>
+                        <div class="table-responsive mt-4">
+                            <table class="dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Title & Details</th>
+                                        <th style="width: 100px; text-align: center;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="notices-list-tbody">
+                                    <tr>
+                                        <td colspan="3" class="text-center">Loading notices...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Events Timeline -->
+                    <div class="settings-card glassmorphism mt-10">
+                        <h3><i class="fa-solid fa-calendar-days"></i> Upcoming Events Timeline</h3>
+                        <p class="section-desc">Add or remove upcoming events displayed on the News & Events timeline.</p>
+
+                        <form id="event-manager-form" class="mt-6">
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="event-date"><i class="fa-solid fa-calendar-days"></i> Select Event Date</label>
+                                    <input type="date" id="event-date" required style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--border-color); background: #fff; color: #0f172a; font-family: inherit;">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="event-title">Event Name / Title</label>
+                                    <input type="text" id="event-title" required placeholder="e.g. Independence Day Celebrations">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-desc">Event Description</label>
+                                <textarea id="event-desc" required rows="3" placeholder="Flag hoisting, assemblies, and celebrations..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-4">
+                                <span class="btn-text"><i class="fa-solid fa-plus"></i> Add Timeline Event</span>
+                                <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i> Saving...</span>
+                            </button>
+                            <div id="event-manager-response" class="form-response"></div>
+                        </form>
+
+                        <h4 class="settings-subsection-title mt-10"><i class="fa-solid fa-clock-rotate-left"></i> Active Events Timeline List</h4>
+                        <div class="table-responsive mt-4">
+                            <table class="dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Event & Details</th>
+                                        <th style="width: 100px; text-align: center;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="events-list-tbody">
+                                    <tr>
+                                        <td colspan="3" class="text-center">Loading events...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Client JS controller -->
+    <script src="js/admin.js"></script>
+</body>
+</html>

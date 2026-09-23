@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admissions 2026-27 | Sri Bhashyam Public School</title>
+    <meta name="description"
+        content="Register your interest for admissions. Access our transparent fee estimator tool, understand eligibility, check required documents, and submit inquiries.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-info">
+                <span><i class="fa-solid fa-phone"></i> <span id="top-phone">+91 9160160690</span></span>
+                <span><i class="fa-solid fa-envelope"></i> <span id="top-email">sribhashyamforyou@gmail.com</span></span>
+                <span><i class="fa-solid fa-location-dot"></i> <span id="top-address-short">Tarakarama Nagar, Kadapa, AP</span></span>
+            </div>
+
+            <div class="top-actions">
+                <a href="admissions.html" class="btn btn-xs btn-gold">Admissions Open 2026-27</a>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/1BbigC9EZq/" target="_blank" rel="noopener noreferrer" title="Follow us on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/sribhashyam_public_school?igsh=OGdkc2U5NWY3cGNw" target="_blank" rel="noopener noreferrer" title="Follow us on Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@SRIBHASHYAMPUBLICSCHOOLKADAPA" target="_blank" rel="noopener noreferrer" title="Subscribe on YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-area">
+                <img src="logo.png" alt="Sri Bhashyam Public School Logo" class="school-logo-img">
+                <div class="logo-text">
+                    <span class="school-title">SRI BHASHYAM</span>
+                    <span class="school-subtitle">PUBLIC SCHOOL • KADAPA</span>
+                    <span class="motto-text">"<span id="logo-slogan">Kim Kim Na Sadhayati Kalpalateva Vidya</span>"</span>
+                </div>
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="academics.html" class="nav-link">Academics</a>
+                <a href="admissions.html" class="nav-link active">Admissions</a>
+                <a href="facilities.html" class="nav-link">Facilities</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="news.html" class="nav-link">News & Events</a>
+                <a href="faculty.html" class="nav-link">Faculty</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="admissions.html" class="btn btn-primary nav-cta">Enquire Now</a>
+            </nav>
+
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Subpage Banner -->
+    <div class="subpage-banner">
+        <div class="container">
+            <h1>Admission & Fees Portal</h1>
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span class="current">Admissions</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subpage Content Body -->
+    <div class="subpage-content">
+        <div class="container">
+            
+            <!-- Fee Estimator Section (Moved from Homepage) -->
+            <div class="content-box">
+                <h2>Interactive Fees Estimator</h2>
+                <p>Select your class stream and transportation radius below to retrieve a real-time estimation of tuition, admission, and lab fees.</p>
+                
+                <div class="fees-grid" style="margin-top: 30px;">
+                    <!-- Calculator Card -->
+                    <div class="calculator-card glassmorphism">
+                        <h3 class="card-title"><i class="fa-solid fa-calculator"></i> Calculate Fee Details</h3>
+                        <div class="calc-form">
+                            <div class="form-group">
+                                <label for="calc-grade">Grade / Class Level</label>
+                                <select id="calc-grade" class="calc-input">
+                                    <option value="pre-primary" selected>Pre-Primary (Nursery, LKG, UKG)</option>
+                                    <option value="primary">Primary (Class I - V)</option>
+                                    <option value="middle">Middle School (Class VI - VIII)</option>
+                                    <option value="high">High School (Class IX - X)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Transportation Requirement</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="calc-transport" value="self" checked>
+                                        <span>Self Transport</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="calc-transport" value="under-5km">
+                                        <span>School Bus (Within 5 km)</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="calc-transport" value="above-5km">
+                                        <span>School Bus (5 km to 10+ km)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="calc-sibling" value="yes">
+                                    <span>Sibling Discount (5% discount on Tuition Fee)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Results Panel -->
+                    <div class="results-card">
+                        <h3>Fee Breakdown Estimate</h3>
+                        <div class="receipt-divider"></div>
+
+                        <div class="receipt-rows">
+                            <div class="receipt-row">
+                                <span>Admission Fee (One-Time)</span>
+                                <span class="price" id="res-admission">₹ 5,000</span>
+                            </div>
+                            <div class="receipt-row">
+                                <span>Tuition Fee (Per Annum)</span>
+                                <span class="price" id="res-tuition">₹ 28,000</span>
+                            </div>
+                            <div class="receipt-row">
+                                <span>Library & Lab Fees</span>
+                                <span class="price" id="res-lab">₹ 2,000</span>
+                            </div>
+                            <div class="receipt-row">
+                                <span>Transport / Bus Fee</span>
+                                <span class="price" id="res-transport">₹ 0</span>
+                            </div>
+                            <div class="receipt-row sibling-discount-row" id="sibling-discount-row" style="display: none;">
+                                <span>Sibling Discount (5%)</span>
+                                <span class="price discount-value" id="res-discount">- ₹ 0</span>
+                            </div>
+                        </div>
+
+                        <div class="receipt-divider mt-6"></div>
+                        <div class="receipt-total">
+                            <span>Total Estimated Fee</span>
+                            <span class="total-price" id="res-total">₹ 35,000</span>
+                        </div>
+
+                        <p class="results-disclaimer">* Note: This is an estimated calculation based on the approved fee structure for the 2026-27 session. Books, uniforms, and sports gear charges are not included.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guidelines, Eligibility & Documents -->
+            <div class="content-box">
+                <h2>Eligibility Criteria & Guidelines</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                    <div>
+                        <h3>Age Criteria</h3>
+                        <ul>
+                            <li><strong>Nursery / LKG</strong>: Child must have completed 3 years of age as of June 1st of the academic year.</li>
+                            <li><strong>Class I</strong>: Child must have completed 5 years of age as of June 1st of the academic year.</li>
+                            <li><strong>Classes II to X</strong>: Valid Transfer Certificate (TC) and previous academic report card required.</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3>Required Documents</h3>
+                        <ul>
+                            <li>Original Birth Certificate copy.</li>
+                            <li>Aadhaar card copy of student and parent.</li>
+                            <li>Transfer Certificate (TC) from recognized schools (Class II onwards).</li>
+                            <li>3 passport-sized recent photos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admission Enquiry Form & FAQs -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;">
+                <!-- Inquiry Form Panel -->
+                <div class="inquiry-form-panel glassmorphism" id="admission-inquiry" style="box-shadow: var(--shadow-md); border: 1px solid var(--border-color); padding: 40px; border-radius: var(--border-radius-md); background: var(--bg-white);">
+                    <h3>Admission Inquiry Form</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-muted);">Fill in details to register callback interest.</p>
+                    <form id="main-inquiry-form" class="inquiry-form">
+                        <input type="hidden" name="type" value="Admission Inquiry">
+
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="form-name">Student Name *</label>
+                                <input type="text" id="form-name" name="name" required placeholder="e.g. Rohith Kumar">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="form-email">Parent Email</label>
+                                <input type="email" id="form-email" name="email" placeholder="e.g. parent@gmail.com">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="form-phone">Mobile Number *</label>
+                                <input type="tel" id="form-phone" name="phone" required placeholder="10-digit number">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="form-grade">Seeking Class/Grade *</label>
+                                <select id="form-grade" name="grade" required>
+                                    <option value="" disabled selected>Choose Grade</option>
+                                    <option value="Nursery">Nursery</option>
+                                    <option value="LKG">LKG</option>
+                                    <option value="UKG">UKG</option>
+                                    <option value="Class I">Class I</option>
+                                    <option value="Class II">Class II</option>
+                                    <option value="Class III">Class III</option>
+                                    <option value="Class IV">Class IV</option>
+                                    <option value="Class V">Class V</option>
+                                    <option value="Class VI">Class VI</option>
+                                    <option value="Class VII">Class VII</option>
+                                    <option value="Class VIII">Class VIII</option>
+                                    <option value="Class IX">Class IX</option>
+                                    <option value="Class X">Class X</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="form-message">Describe Student's Academic Background / Message</label>
+                            <textarea id="form-message" name="message" rows="4" placeholder="Mention previous school details, hobbies or special learning needs..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-gold btn-block" id="form-submit-btn">
+                            <span class="btn-text"><i class="fa-solid fa-arrow-right-to-bracket"></i> Register Admission Query</span>
+                            <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i> Submitting...</span>
+                        </button>
+
+                        <div id="main-form-response" class="form-response" style="margin-top: 15px;"></div>
+                    </form>
+                </div>
+
+                <!-- FAQs Panel -->
+                <div class="content-box" style="margin-bottom: 0;">
+                    <h2>Admissions FAQs</h2>
+                    <div style="display: flex; flex-direction: column; gap: 20px; margin-top: 10px;">
+                        <div>
+                            <h4 style="font-family: var(--font-heading); color: var(--primary-dark); font-weight: 700; margin-bottom: 5px;"><i class="fa-solid fa-circle-question" style="color: var(--accent-light);"></i> Is there an admission test?</h4>
+                            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; margin: 0;">For Nursery and Primary classes, we only conduct a friendly interaction session. Grades VI to X will undergo a basic readiness assessment test in English, Math, and Science.</p>
+                        </div>
+                        <div>
+                            <h4 style="font-family: var(--font-heading); color: var(--primary-dark); font-weight: 700; margin-bottom: 5px;"><i class="fa-solid fa-circle-question" style="color: var(--accent-light);"></i> Can we pay tuition fees in installments?</h4>
+                            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; margin: 0;">Yes. Tuition fees can be remitted in three installments across the academic year (June, October, and January).</p>
+                        </div>
+                        <div>
+                            <h4 style="font-family: var(--font-heading); color: var(--primary-dark); font-weight: 700; margin-bottom: 5px;"><i class="fa-solid fa-circle-question" style="color: var(--accent-light);"></i> Are buses available to all areas in Kadapa?</h4>
+                            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; margin: 0;">Yes, our transport system spans all prime locations inside municipal limits with regular tracking updates.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col brand-col">
+                <div class="footer-logo">
+                    <span class="title">SRI BHASHYAM</span>
+                    <span class="sub">PUBLIC SCHOOL</span>
+                </div>
+                <p>Nurturing young minds in Kadapa since 2006. Leading State Board and competitive examination preparation integrated with traditional moral development.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Academics</h4>
+                <ul class="footer-links">
+                    <li><a href="academics.html"><i class="fa-solid fa-chevron-right"></i> Little Champs (Primary)</a></li>
+                    <li><a href="academics.html"><i class="fa-solid fa-chevron-right"></i> Middle School Curriculum</a></li>
+                    <li><a href="academics.html"><i class="fa-solid fa-chevron-right"></i> Secondary High School</a></li>
+                    <li><a href="academics.html"><i class="fa-solid fa-chevron-right"></i> NEET & JEE integrated</a></li>
+                    <li><a href="admissions.html"><i class="fa-solid fa-chevron-right"></i> Fee Distributions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home Campus</a></li>
+                    <li><a href="about.html"><i class="fa-solid fa-chevron-right"></i> Founder's Desk</a></li>
+                    <li><a href="facilities.html"><i class="fa-solid fa-chevron-right"></i> Science & Computer Labs</a></li>
+                    <li><a href="gallery.html"><i class="fa-solid fa-chevron-right"></i> School Gallery</a></li>
+                    <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Locate Campus</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>School Circulars</h4>
+                <p>Subscribe to receive news updates, holiday events schedules, and admission openings direct to your email.</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" required>
+                    <button type="submit" class="btn btn-gold"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container bottom-container">
+                <p>&copy; 2026 Sri Bhashyam Public School, Kadapa. All Rights Reserved.</p>
+                <div class="bottom-links">
+                    <a href="admin.html" target="_blank" style="color: var(--accent-light); font-weight: 700;"><i class="fa-solid fa-lock"></i> Admin Portal</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobile-drawer">
+        <div class="drawer-header">
+            <span class="drawer-title">Menu</span>
+            <button class="drawer-close" id="drawer-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-body">
+            <a href="index.html" class="drawer-link">Home</a>
+            <a href="about.html" class="drawer-link">About Us</a>
+            <a href="academics.html" class="drawer-link">Academics</a>
+            <a href="admissions.html" class="drawer-link">Admissions</a>
+            <a href="facilities.html" class="drawer-link">Facilities</a>
+            <a href="gallery.html" class="drawer-link">Gallery</a>
+            <a href="news.html" class="drawer-link">News & Events</a>
+            <a href="faculty.html" class="drawer-link">Faculty</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="admissions.html" class="btn btn-primary w-full text-center">Admission Enquiry</a>
+        </div>
+    </div>
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

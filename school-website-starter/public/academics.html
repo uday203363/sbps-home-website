@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academics | Sri Bhashyam Public School</title>
+    <meta name="description"
+        content="Explore our structured academic streams, curriculum pathways, integrated NEET/JEE prep, teaching methodologies, and annual calendar.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-info">
+                <span><i class="fa-solid fa-phone"></i> <span id="top-phone">+91 9160160690</span></span>
+                <span><i class="fa-solid fa-envelope"></i> <span id="top-email">sribhashyamforyou@gmail.com</span></span>
+                <span><i class="fa-solid fa-location-dot"></i> <span id="top-address-short">Tarakarama Nagar, Kadapa, AP</span></span>
+            </div>
+
+            <div class="top-actions">
+                <a href="admissions.html" class="btn btn-xs btn-gold">Admissions Open 2026-27</a>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/1BbigC9EZq/" target="_blank" rel="noopener noreferrer" title="Follow us on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/sribhashyam_public_school?igsh=OGdkc2U5NWY3cGNw" target="_blank" rel="noopener noreferrer" title="Follow us on Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@SRIBHASHYAMPUBLICSCHOOLKADAPA" target="_blank" rel="noopener noreferrer" title="Subscribe on YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-area">
+                <img src="logo.png" alt="Sri Bhashyam Public School Logo" class="school-logo-img">
+                <div class="logo-text">
+                    <span class="school-title">SRI BHASHYAM</span>
+                    <span class="school-subtitle">PUBLIC SCHOOL • KADAPA</span>
+                    <span class="motto-text">"<span id="logo-slogan">Kim Kim Na Sadhayati Kalpalateva Vidya</span>"</span>
+                </div>
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="academics.html" class="nav-link active">Academics</a>
+                <a href="admissions.html" class="nav-link">Admissions</a>
+                <a href="facilities.html" class="nav-link">Facilities</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="news.html" class="nav-link">News & Events</a>
+                <a href="faculty.html" class="nav-link">Faculty</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="admissions.html" class="btn btn-primary nav-cta">Enquire Now</a>
+            </nav>
+
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Subpage Banner -->
+    <div class="subpage-banner">
+        <div class="container">
+            <h1>Academic Programs</h1>
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span class="current">Academics</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subpage Content Body -->
+    <div class="subpage-content">
+        <div class="container">
+            
+            <!-- Curriculum Overview & Dynamic Panel -->
+            <div class="content-box">
+                <h2>Our Academic Offerings</h2>
+                <p>At Sri Bhashyam, we prioritize a holistic curriculum designed to foster deep understanding, critical inquiry, and competitive rigor. We blend Montessori concepts in primary classes with AP State Board frameworks in secondary tiers to create an optimal balance of success.</p>
+                
+                <!-- Program Selector Tabs (Replicated from Homepage) -->
+                <div class="academics-tabs-container mt-10">
+                    <div class="program-buttons">
+                        <button class="prog-btn active" data-program="little-champs">
+                            <span class="icon"><i class="fa-child-reaching fa-solid"></i></span>
+                            <span class="title">Little Champs</span>
+                        </button>
+                        <button class="prog-btn" data-program="middle">
+                            <span class="icon"><i class="fa-book-open-reader fa-solid"></i></span>
+                            <span class="title">Middle School</span>
+                        </button>
+                        <button class="prog-btn" data-program="high">
+                            <span class="icon"><i class="fa-graduation-cap fa-solid"></i></span>
+                            <span class="title">High School</span>
+                        </button>
+                        <button class="prog-btn" data-program="competitive">
+                            <span class="icon"><i class="fa-medal fa-solid"></i></span>
+                            <span class="title">NEET & JEE Prep</span>
+                        </button>
+                    </div>
+
+                    <div class="program-content-display" id="program-panels-container">
+                        <!-- Dynamically populated from settings -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Departments & Teaching Methodology -->
+            <div class="content-box">
+                <h2>Teaching Methodology & Departments</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                    <div>
+                        <h3>Experiential Pedagogy</h3>
+                        <p>We actively steer away from rote memorization. Our concepts are delivered using interactive visual slides, hands-on lab experiments, science model constructions, and collaborative group discussions.</p>
+                        
+                        <h3>Core Academic Departments</h3>
+                        <ul>
+                            <li><strong>Sciences Wing</strong>: Specialized lab-oriented training in Physics, Chemistry, and Biological Sciences.</li>
+                            <li><strong>Mathematics</strong>: Logical deduction frameworks and advanced competitive mental math.</li>
+                            <li><strong>Languages</strong>: Complete communication fluency in English, Telugu, and Hindi.</li>
+                            <li><strong>Social Studies</strong>: Civic awareness and local/global history timelines.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Examination & Evaluations</h3>
+                        <p>We host rigorous evaluations aligned with state norms to prepare students for peak success. Our testing patterns include:</p>
+                        <ul>
+                            <li>Weekly Formative Slip Assessments.</li>
+                            <li>Quarterly and Half-Yearly Summative Evaluations.</li>
+                            <li>Specialized State Board mock exams for Class IX and X.</li>
+                            <li>Weekly Mock tests for IIT-JEE/NEET aspirants.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Co-curricular & Academic Calendar -->
+            <div class="content-box">
+                <h2>Academic Calendar & Co-Curriculars</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                    <div>
+                        <h3>Co-Curricular Activities</h3>
+                        <p>Academic learning is incomplete without physical and creative outlets. We offer structured training programs in:</p>
+                        <ul>
+                            <li><strong>Creative Arts</strong>: Classical/modern dance, paintings, and crafts.</li>
+                            <li><strong>Public Speaking</strong>: Model United Nations simulations, inter-school debates, and quiz bowls.</li>
+                            <li><strong>Sports</strong>: Physical training in Cricket, Volley Ball, Badminton, Chess, and Karate.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Annual Schedule Outline</h3>
+                        <div style="display: flex; flex-direction: column; gap: 15px; background: var(--bg-light); padding: 25px; border-radius: var(--border-radius-md);">
+                            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+                                <strong>June 12, 2026</strong>
+                                <span>Academic Session Begins</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+                                <strong>October 10-18, 2026</strong>
+                                <span>Dasara Festival Vacation</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+                                <strong>January 11-17, 2027</strong>
+                                <span>Sankranti Holidays</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding-bottom: 0;">
+                                <strong>March 2027</strong>
+                                <span>Annual Board Examinations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col brand-col">
+                <div class="footer-logo">
+                    <span class="title">SRI BHASHYAM</span>
+                    <span class="sub">PUBLIC SCHOOL</span>
+                </div>
+                <p>Nurturing young minds in Kadapa since 2006. Leading State Board and competitive examination preparation integrated with traditional moral development.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Academics</h4>
+                <ul class="footer-links">
+                    <li><a href="academics.html"><i class="fa-solid fa-chevron-right"></i> Little Champs (Primary)</a></li>
+                    <li><a href="academics.html"><i class="fa-solid fa-chevron-right"></i> Middle School Curriculum</a></li>
+                    <li><a href="academics.html"><i class="fa-solid fa-chevron-right"></i> Secondary High School</a></li>
+                    <li><a href="academics.html"><i class="fa-solid fa-chevron-right"></i> NEET & JEE integrated</a></li>
+                    <li><a href="admissions.html"><i class="fa-solid fa-chevron-right"></i> Fee Distributions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home Campus</a></li>
+                    <li><a href="about.html"><i class="fa-solid fa-chevron-right"></i> Founder's Desk</a></li>
+                    <li><a href="facilities.html"><i class="fa-solid fa-chevron-right"></i> Science & Computer Labs</a></li>
+                    <li><a href="gallery.html"><i class="fa-solid fa-chevron-right"></i> School Gallery</a></li>
+                    <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Locate Campus</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>School Circulars</h4>
+                <p>Subscribe to receive news updates, holiday events schedules, and admission openings direct to your email.</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" required>
+                    <button type="submit" class="btn btn-gold"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container bottom-container">
+                <p>&copy; 2026 Sri Bhashyam Public School, Kadapa. All Rights Reserved.</p>
+                <div class="bottom-links">
+                    <a href="admin.html" target="_blank" style="color: var(--accent-light); font-weight: 700;"><i class="fa-solid fa-lock"></i> Admin Portal</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobile-drawer">
+        <div class="drawer-header">
+            <span class="drawer-title">Menu</span>
+            <button class="drawer-close" id="drawer-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-body">
+            <a href="index.html" class="drawer-link">Home</a>
+            <a href="about.html" class="drawer-link">About Us</a>
+            <a href="academics.html" class="drawer-link">Academics</a>
+            <a href="admissions.html" class="drawer-link">Admissions</a>
+            <a href="facilities.html" class="drawer-link">Facilities</a>
+            <a href="gallery.html" class="drawer-link">Gallery</a>
+            <a href="news.html" class="drawer-link">News & Events</a>
+            <a href="faculty.html" class="drawer-link">Faculty</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="admissions.html" class="btn btn-primary w-full text-center">Admission Enquiry</a>
+        </div>
+    </div>
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
