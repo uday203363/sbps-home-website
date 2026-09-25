@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    /* Backend API base URL — points to deployed Vercel backend in production */
+    const API_BASE = 'https://sbps-home-website-y3ox-l2d5ckzbf.vercel.app';
+
     // Auth & View Panels
     const loginSection = document.getElementById('login-section');
     const dashboardSection = document.getElementById('dashboard-section');
@@ -53,8 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
        Safe API Fetch & Session Expiration Helper
        ========================================================================== */
     const safeFetchJson = async (url, options = {}) => {
+        // Prefix relative /api/ paths with the deployed backend base URL
+        const resolvedUrl = url.startsWith('/api/') ? API_BASE + url : url;
         try {
-            const res = await fetch(url, options);
+            const res = await fetch(resolvedUrl, options);
             let data = null;
             const contentType = res.headers.get('content-type') || '';
             

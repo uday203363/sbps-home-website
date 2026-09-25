@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    /* Backend API base URL — points to deployed Vercel backend in production */
+    const API_BASE = 'https://sbps-home-website-y3ox-l2d5ckzbf.vercel.app';
+
     /* ==========================================================================
        1. Navigation Menu & Scroll Handling
        ========================================================================== */
@@ -204,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const loadSchoolSettings = async () => {
         try {
-            const response = await fetch('/api/admin/settings?t=' + Date.now());
+            const response = await fetch(API_BASE + '/api/admin/settings?t=' + Date.now());
             if (response.ok) {
                 const settings = await response.json();
                 window.cachedSettings = settings;
@@ -1038,7 +1041,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         try {
-            const response = await fetch('/api/inquiry', {
+            const response = await fetch(API_BASE + '/api/inquiry', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
