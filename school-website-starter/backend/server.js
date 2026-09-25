@@ -18,9 +18,26 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 const frontendDir = path.join(__dirname, '..', 'frontend');
 app.use(express.static(frontendDir));
 
-// Enable CORS for cross-origin requests (e.g. static dev servers)
+// Enable CORS for cross-origin requests (e.g. static dev servers & deployed frontend)
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
+    const origin = req.headers.origin;
+    const allowedOrigins = [
+        'http://localhost:3000',
+        'http://localhost:5500',
+        'http://127.0.0.1:5500',
+        'http://127.0.0.1:3000'
+    ];
+
+    if (process.env.FRONTEND_URL) {
+        allowedOrigins.push(process.env.FRONTEND_URL.trim().replace(/\/$/, ''));
+    }
+
+    if (!origin || allowedOrigins.includes(origin) || allowedOrigins.some(o => origin.startsWith(o))) {
+        res.header('Access-Control-Allow-Origin', origin || '*');
+    } else {
+        res.header('Access-Control-Allow-Origin', '*');
+    }
+
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     if (req.method === 'OPTIONS') {
@@ -584,8 +601,12 @@ app.post('/api/admin/users', authAdmin, async (req, res) => {
 // ==========================================
 // 6. SERVER STARTUP & CACHE INITIALIZATION
 // ==========================================
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, async () => {
-    console.log(`Server running smoothly on http://localhost:${PORT}`);
-    await loadSettingsIntoCache();
-});
+if (!process.env.VERCEL) {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, async () => {
+        console.log(`Server running smoothly on http://localhost:${PORT}`);
+        await loadSettingsIntoCache();
+    });
+}
+
+module.exports = app;
