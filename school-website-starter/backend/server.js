@@ -14,9 +14,11 @@ const app = express();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-// Serve static frontend directory
+// Serve static frontend directory (local dev only — Vercel CDN handles this in production)
 const frontendDir = path.join(__dirname, '..', 'frontend');
-app.use(express.static(frontendDir));
+if (!process.env.VERCEL) {
+    app.use(express.static(frontendDir));
+}
 
 // Enable CORS for cross-origin requests (e.g. static dev servers & deployed frontend)
 app.use((req, res, next) => {
@@ -46,9 +48,9 @@ app.use((req, res, next) => {
     next();
 });
 
-// Ensure uploads directory exists inside frontend
+// Ensure uploads directory exists inside frontend (local dev only; Vercel filesystem is read-only)
 const uploadDir = path.join(frontendDir, 'uploads');
-if (!fs.existsSync(uploadDir)) {
+if (!process.env.VERCEL && !fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
 
