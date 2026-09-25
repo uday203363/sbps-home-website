@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* Backend API base URL — points to deployed Vercel backend in production */
-    const API_BASE = 'https://sbps-home-website-y3ox-l2d5ckzbf.vercel.app';
+    const API_BASE = 'https://sbps-home-website-y3ox.vercel.app';
 
     // Auth & View Panels
     const loginSection = document.getElementById('login-section');
