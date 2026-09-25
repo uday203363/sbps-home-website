@@ -19,16 +19,8 @@
     <div class="admin-login-wrapper" id="login-section">
         <div class="login-card glassmorphism animate-slide-up">
             <div class="login-header">
-                <!-- SVG Emblem Logo -->
-                <svg viewBox="0 0 300 300" width="80" height="80">
-                    <rect x="5" y="5" width="290" height="290" fill="none" stroke="#d32f2f" stroke-width="4"/>
-                    <circle cx="150" cy="140" r="115" fill="#ffeb3b" stroke="#000000" stroke-width="3"/>
-                    <circle cx="150" cy="140" r="95" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
-                    <line x1="60" y1="195" x2="240" y2="195" stroke="#000000" stroke-width="2"/>
-                    <path d="M 60,195 L 70,222 L 150,232 L 230,222 L 240,195 Z" fill="#ffeb3b" stroke="#000" stroke-width="1.5"/>
-                    <rect x="5" y="248" width="290" height="42" fill="#d32f2f"/>
-                    <text x="150" y="277" font-family="'Outfit', sans-serif" font-size="24" font-weight="900" fill="#ffffff" letter-spacing="3" text-anchor="middle">SRI BHASHYAM</text>
-                </svg>
+                <!-- School Logo -->
+                <img src="logo.png" alt="Sri Bhashyam Public School Logo" class="admin-login-logo">
                 <h2>SBPS Admin Portal</h2>
                 <p>Sign in to manage queries, edit fee plans and update contacts.</p>
             </div>
@@ -143,6 +135,13 @@
                                 <h3 id="stat-card-gallery">0</h3>
                             </div>
                         </div>
+                        <div class="stat-overview-card">
+                            <div class="icon-wrapper red"><i class="fa-solid fa-video"></i></div>
+                            <div class="stat-details">
+                                <span class="label">Gallery Videos</span>
+                                <h3 id="stat-card-videos">0</h3>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="table-container glassmorphism">
@@ -193,7 +192,7 @@
                             
                             <div class="form-group">
                                 <label for="set-email">Official Email</label>
-                                <input type="email" id="set-email" required placeholder="info@sribhashyamschool.edu.in">
+                                <input type="email" id="set-email" required placeholder="Sribhashyamforyou@gmail.com">
                             </div>
                             
                             <div class="form-group">
@@ -338,20 +337,16 @@
                                 </div>
                             </div>
 
-                            <!-- Transport & Sibling config -->
-                            <h4 class="settings-subsection-title mt-10"><i class="fa-solid fa-bus"></i> Transport & Discount Rates</h4>
+                            <!-- Transport config -->
+                            <h4 class="settings-subsection-title mt-10"><i class="fa-solid fa-bus"></i> Transport Rates</h4>
                             <div class="form-row">
-                                <div class="form-group col-4">
+                                <div class="form-group col-6">
                                     <label for="fee-trans-under5">Under 5km Bus Fee (₹)</label>
                                     <input type="number" id="fee-trans-under5" required>
                                 </div>
-                                <div class="form-group col-4">
+                                <div class="form-group col-6">
                                     <label for="fee-trans-above5">5km to 10+km Bus Fee (₹)</label>
                                     <input type="number" id="fee-trans-above5" required>
-                                </div>
-                                <div class="form-group col-4">
-                                    <label for="fee-discount-sibling">Sibling Discount (%)</label>
-                                    <input type="number" id="fee-discount-sibling" required min="0" max="100">
                                 </div>
                             </div>
                             
@@ -458,16 +453,24 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="cms-chairman-avatar">Chairman Photo Avatar URL</label>
-                                <input type="text" id="cms-chairman-avatar" required>
+                                <label for="cms-chairman-avatar">Chairman Photo Avatar</label>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <input type="text" id="cms-chairman-avatar" required placeholder="Photo URL (auto-filled on file select)">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <label for="cms-chairman-avatar-file" class="btn btn-secondary" style="font-size: 0.85rem; padding: 8px 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; border-radius: 6px; background: var(--primary-light, #2563eb); color: white;">
+                                            <i class="fa-solid fa-upload"></i> Upload Photo from Local Disk
+                                        </label>
+                                        <input type="file" id="cms-chairman-avatar-file" accept="image/*" style="display: none;">
+                                        <span style="font-size: 0.8rem; color: var(--text-muted);">Pick an image file from your computer</span>
+                                    </div>
+                                    <div id="cms-chairman-avatar-status" class="form-response" style="display: none;"></div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="cms-chairman-message">Chairman Desk Message</label>
                                 <textarea id="cms-chairman-message" required rows="4"></textarea>
                             </div>
 
-
-                            
                             <!-- Vision / Mission Section -->
                             <h4 class="settings-subsection-title mt-10"><i class="fa-solid fa-eye"></i> Vision & Mission Statements</h4>
                             <div class="form-group">
@@ -513,6 +516,64 @@
                                 <tbody id="announcements-list-tbody">
                                     <tr>
                                         <td colspan="2" class="text-center">Loading alerts list...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Manage Parent Testimonials -->
+                    <div class="settings-card glassmorphism mt-10">
+                        <h3>Manage Parent Testimonials ("What Parents Say")</h3>
+                        <p class="section-desc">Add or remove feedback quotes displayed in the homepage testimonials carousel.</p>
+                        
+                        <form id="testimonial-manager-form">
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="testi-parent-name">Parent Name</label>
+                                    <input type="text" id="testi-parent-name" placeholder="e.g. Smt. S. Anitha" required>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="testi-student-info">Student / Class Info</label>
+                                    <input type="text" id="testi-student-info" placeholder="e.g. Parent of Class X Student" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="testi-quote">Testimonial Message / Feedback Quote</label>
+                                <textarea id="testi-quote" rows="3" placeholder="Enter parent's testimonial message..." required></textarea>
+                            </div>
+                            <div class="form-row" style="align-items: center;">
+                                <div class="form-group col-6">
+                                    <label for="testi-rating">Rating (1 to 5 Stars)</label>
+                                    <select id="testi-rating" class="form-control" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main);">
+                                        <option value="5" selected>5 Stars (★★★★★)</option>
+                                        <option value="4">4 Stars (★★★★☆)</option>
+                                        <option value="3">3 Stars (★★★☆☆)</option>
+                                        <option value="2">2 Stars (★★☆☆☆)</option>
+                                        <option value="1">1 Star (★☆☆☆☆)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-6" style="display: flex; align-items: flex-end;">
+                                    <button type="submit" class="btn btn-primary w-full" style="height: 46px; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-plus" style="margin-right: 6px;"></i> Add Parent Testimonial</button>
+                                </div>
+                            </div>
+                            <div id="testimonial-manager-response" class="form-response"></div>
+                        </form>
+                        
+                        <div class="table-responsive mt-6">
+                            <table class="dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>Parent Name</th>
+                                        <th>Student / Class Info</th>
+                                        <th>Quote / Feedback Message</th>
+                                        <th style="width: 80px; text-align: center;">Rating</th>
+                                        <th style="width: 100px; text-align: center;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="testimonials-list-tbody">
+                                    <tr>
+                                        <td colspan="5" class="text-center">Loading parent testimonials...</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -619,6 +680,7 @@
                                         <option value="sports">Sports Arena</option>
                                         <option value="events">Festivals & Events</option>
                                         <option value="academic">Classrooms</option>
+                                        <option value="activities">Activities</option>
                                     </select>
                                 </div>
                             </div>
@@ -639,6 +701,68 @@
                         <h4 class="settings-subsection-title mt-10"><i class="fa-solid fa-images"></i> Homepage Photo Gallery Grid</h4>
                         <div id="admin-gallery-preview-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; margin-top: 20px;">
                             <!-- Previews dynamically populated -->
+                        </div>
+                    </div>
+
+                    <!-- Manage Video Gallery -->
+                    <div class="settings-card glassmorphism mt-10">
+                        <h3><i class="fa-solid fa-video"></i> Manage Video Gallery</h3>
+                        <p class="section-desc">Add video links (YouTube / Embed URL) or upload video files & cover thumbnails to display in the Video Gallery Showcase.</p>
+                        
+                        <form id="video-upload-form" class="mt-6">
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="gallery-video-title">Video Title</label>
+                                    <input type="text" id="gallery-video-title" required placeholder="e.g. Annual Day Celebrations 2026">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="gallery-video-category">Category</label>
+                                    <select id="gallery-video-category" required style="padding: 12px;">
+                                        <option value="campus">Campus & Labs</option>
+                                        <option value="sports">Sports Arena</option>
+                                        <option value="events">Festivals & Events</option>
+                                        <option value="academic">Classrooms</option>
+                                        <option value="activities">Activities</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row mt-4">
+                                <div class="form-group col-6">
+                                    <label for="gallery-video-url">Video Link / YouTube Embed URL</label>
+                                    <input type="text" id="gallery-video-url" placeholder="e.g. https://www.youtube.com/embed/... or MP4 link">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="gallery-video-file">Or Upload Video File (MP4/WebM)</label>
+                                    <input type="file" id="gallery-video-file" accept="video/*" style="padding: 8px;">
+                                </div>
+                            </div>
+                            <div class="form-row mt-4">
+                                <div class="form-group col-6">
+                                    <label for="gallery-video-thumbnail-file">Cover Image / Thumbnail (Upload)</label>
+                                    <input type="file" id="gallery-video-thumbnail-file" accept="image/*" style="padding: 8px;">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="gallery-video-thumbnail-url">Or Thumbnail Image URL</label>
+                                    <input type="text" id="gallery-video-thumbnail-url" placeholder="https://images.unsplash.com/... or image link">
+                                </div>
+                            </div>
+                            <div class="form-row mt-4">
+                                <div class="form-group col-12">
+                                    <label for="gallery-video-desc">Short Description / Summary</label>
+                                    <input type="text" id="gallery-video-desc" placeholder="Watch short highlights from our celebrations and activities">
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary mt-6">
+                                <span class="btn-text"><i class="fa-solid fa-film"></i> Add Video to Gallery</span>
+                                <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i> Processing Video...</span>
+                            </button>
+                            <div id="video-upload-response" class="form-response"></div>
+                        </form>
+                        
+                        <h4 class="settings-subsection-title mt-10"><i class="fa-solid fa-play"></i> Video Showcase Directory</h4>
+                        <div id="admin-video-preview-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; margin-top: 20px;">
+                            <!-- Dynamic Video Cards -->
                         </div>
                     </div>
                 </div>

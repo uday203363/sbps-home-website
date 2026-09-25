@@ -119,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
        5. Interactive Fee Estimator Engine
        ========================================================================== */
     const gradeSelect = document.getElementById('calc-grade');
-    const siblingCheckbox = document.getElementById('calc-sibling');
     const transportRadios = document.getElementsByName('calc-transport');
     
     // Receipt Output Elements
@@ -127,12 +126,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const resTuition = document.getElementById('res-tuition');
     const resLab = document.getElementById('res-lab');
     const resTransport = document.getElementById('res-transport');
-    const siblingDiscountRow = document.getElementById('sibling-discount-row');
-    const resDiscount = document.getElementById('res-discount');
     const resTotal = document.getElementById('res-total');
 
     // Default Fallbacks - overwritten dynamically by settings API
     let feeStructures = {
+        'nursery': { admission: 5000, tuition: 28000, lab: 2000 },
+        'lkg': { admission: 5000, tuition: 28000, lab: 2000 },
+        'ukg': { admission: 5000, tuition: 28000, lab: 2000 },
+        'class-1': { admission: 6000, tuition: 34000, lab: 2500 },
+        'class-2': { admission: 6000, tuition: 34000, lab: 2500 },
+        'class-3': { admission: 6000, tuition: 34000, lab: 2500 },
+        'class-4': { admission: 6000, tuition: 34000, lab: 2500 },
+        'class-5': { admission: 6000, tuition: 34000, lab: 2500 },
+        'class-6': { admission: 8000, tuition: 42000, lab: 3000 },
+        'class-7': { admission: 8000, tuition: 42000, lab: 3000 },
+        'class-8': { admission: 8000, tuition: 42000, lab: 3000 },
+        'class-9': { admission: 10000, tuition: 50000, lab: 4000 },
+        'class-10': { admission: 10000, tuition: 50000, lab: 4000 },
         'pre-primary': { admission: 5000, tuition: 28000, lab: 2000 },
         'primary': { admission: 6000, tuition: 34000, lab: 2500 },
         'middle': { admission: 8000, tuition: 42000, lab: 3000 },
@@ -145,8 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'above-5km': 18000
     };
 
-    let siblingDiscountPercent = 5;
-
     const formatCurrency = (val) => {
         return '₹ ' + val.toLocaleString('en-IN');
     };
@@ -154,7 +162,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const calculateTotalFee = () => {
         if (!gradeSelect) return;
         const selectedGrade = gradeSelect.value;
-        const selectedStructure = feeStructures[selectedGrade] || feeStructures['pre-primary'];
+        
+        let selectedStructure = feeStructures[selectedGrade];
+        if (!selectedStructure) {
+            if (['nursery', 'lkg', 'ukg'].includes(selectedGrade)) {
+                selectedStructure = feeStructures['pre-primary'];
+            } else if (['class-1', 'class-2', 'class-3', 'class-4', 'class-5'].includes(selectedGrade)) {
+                selectedStructure = feeStructures['primary'];
+            } else if (['class-6', 'class-7', 'class-8'].includes(selectedGrade)) {
+                selectedStructure = feeStructures['middle'];
+            } else if (['class-9', 'class-10'].includes(selectedGrade)) {
+                selectedStructure = feeStructures['high'];
+            }
+        }
+        if (!selectedStructure) selectedStructure = feeStructures['nursery'] || feeStructures['pre-primary'];
 
         // Get Transport Value
         let transportVal = 'self';
@@ -171,24 +192,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const tuitionFee = selectedStructure.tuition;
         const labFee = selectedStructure.lab;
 
-        // Sibling Discount Check
-        let discountFee = 0;
-        if (siblingCheckbox.checked) {
-            discountFee = Math.floor(tuitionFee * (siblingDiscountPercent / 100));
-            siblingDiscountRow.style.display = 'flex';
-            resDiscount.innerText = '- ' + formatCurrency(discountFee);
-        } else {
-            siblingDiscountRow.style.display = 'none';
-        }
-
-        const totalEstimated = (admissionFee + tuitionFee + labFee + selectedTransportFee) - discountFee;
+        const totalEstimated = admissionFee + tuitionFee + labFee + selectedTransportFee;
 
         // Render to view
-        resAdmission.innerText = formatCurrency(admissionFee);
-        resTuition.innerText = formatCurrency(tuitionFee);
-        resLab.innerText = formatCurrency(labFee);
-        resTransport.innerText = formatCurrency(selectedTransportFee);
-        resTotal.innerText = formatCurrency(totalEstimated);
+        if (resAdmission) resAdmission.innerText = formatCurrency(admissionFee);
+        if (resTuition) resTuition.innerText = formatCurrency(tuitionFee);
+        if (resLab) resLab.innerText = formatCurrency(labFee);
+        if (resTransport) resTransport.innerText = formatCurrency(selectedTransportFee);
+        if (resTotal) resTotal.innerText = formatCurrency(totalEstimated);
     };
 
     const loadSchoolSettings = async () => {
@@ -228,9 +239,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (document.getElementById('logo-slogan')) document.getElementById('logo-slogan').innerText = settings.slogan;
 
                 // Load custom fee configuration matrix
-                if (settings.fees) feeStructures = settings.fees;
+                if (settings.fees) {
+                    feeStructures = { ...feeStructures, ...settings.fees };
+                    ['nursery', 'lkg', 'ukg'].forEach(c => {
+                        if (!settings.fees[c] && settings.fees['pre-primary']) feeStructures[c] = settings.fees['pre-primary'];
+                    });
+                    ['class-1', 'class-2', 'class-3', 'class-4', 'class-5'].forEach(c => {
+                        if (!settings.fees[c] && settings.fees['primary']) feeStructures[c] = settings.fees['primary'];
+                    });
+                    ['class-6', 'class-7', 'class-8'].forEach(c => {
+                        if (!settings.fees[c] && settings.fees['middle']) feeStructures[c] = settings.fees['middle'];
+                    });
+                    ['class-9', 'class-10'].forEach(c => {
+                        if (!settings.fees[c] && settings.fees['high']) feeStructures[c] = settings.fees['high'];
+                    });
+                }
                 if (settings.transportFees) transportFees = settings.transportFees;
-                if (settings.siblingDiscountPercent !== undefined) siblingDiscountPercent = settings.siblingDiscountPercent;
 
                 // Update stats counter targets dynamically
                 if (settings.stats) {
@@ -260,9 +284,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Populate homepage Chairman welcome card dynamically
                 if (settings.chairman) {
-                    if (document.getElementById('home-chair-avatar')) document.getElementById('home-chair-avatar').style.backgroundImage = `url('${settings.chairman.avatar}')`;
-                    if (document.getElementById('home-chair-name')) document.getElementById('home-chair-name').innerText = settings.chairman.name;
-                    if (document.getElementById('home-chair-quote')) document.getElementById('home-chair-quote').innerText = `"${settings.chairman.message}"`;
+                    if (document.getElementById('home-chair-avatar') && settings.chairman.avatar) {
+                        document.getElementById('home-chair-avatar').style.backgroundImage = `url('${settings.chairman.avatar}')`;
+                    }
+                    if (document.getElementById('home-chair-name') && settings.chairman.name) {
+                        document.getElementById('home-chair-name').innerText = settings.chairman.name;
+                    }
+                    if (document.getElementById('home-chair-role') && settings.chairman.role) {
+                        document.getElementById('home-chair-role').innerText = settings.chairman.role;
+                    }
+                    if (document.getElementById('home-chair-quote') && settings.chairman.message) {
+                        document.getElementById('home-chair-quote').innerText = `"${settings.chairman.message}"`;
+                    }
                 }
 
                 // Render Desk Messages
@@ -284,6 +317,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         role: "Student Council President",
                         avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=600",
                         message: "At Sri Bhashyam, we are encouraged to explore our passions in science, arts, and sports, making our school journey truly memorable and enjoyable."
+                    },
+                    parents: settings.parentsMessage || {
+                        name: "K. Raghunath Reddy",
+                        role: "Parent Representative",
+                        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600",
+                        message: "Sri Bhashyam Public School provides an outstanding learning environment. Teachers pay individual attention to every student and encourage moral values along with top-grade academics."
                     }
                 };
 
@@ -601,6 +640,36 @@ document.addEventListener('DOMContentLoaded', () => {
                     bindGallery();
                 }
 
+                // Render Video Gallery Showcase
+                const videoGrid = document.getElementById('video-gallery-grid');
+                if (videoGrid && settings.videos && settings.videos.length > 0) {
+                    videoGrid.innerHTML = settings.videos.map(v => {
+                        const thumb = v.thumbnail || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=400';
+                        return `
+                        <div class="video-card-item" data-video="${v.videoUrl}" style="background: var(--bg-light); border-radius: var(--border-radius-md); overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <div style="position: relative; padding-top: 56.25%; background: #000; overflow: hidden;">
+                                <div style="position: absolute; top:0; left:0; width:100%; height:100%; display: flex; flex-direction: column; align-items:center; justify-content:center; background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${thumb}'); background-size: cover; background-position: center;">
+                                    <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(15, 23, 42, 0.75); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+                                        <i class="fa-solid fa-play" style="font-size: 1.8rem; color: #f59e0b; margin-left: 4px;"></i>
+                                    </div>
+                                    <span style="color:#fff; font-weight:700; margin-top:12px; font-family: var(--font-heading); text-shadow: 0 2px 4px rgba(0,0,0,0.8);">${v.title}</span>
+                                </div>
+                            </div>
+                            <div style="padding: 20px; flex-grow: 1;">
+                                <h4 style="margin:0 0 8px 0; font-family: var(--font-heading); font-size: 1.1rem; color: var(--primary-dark);">${v.title}</h4>
+                                <p style="margin:0; font-size: 0.88rem; color: var(--text-muted);">${v.description || ''}</p>
+                            </div>
+                        </div>
+                    `}).join('');
+                }
+
+                document.querySelectorAll('.video-card-item').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const videoUrl = card.getAttribute('data-video');
+                        if (videoUrl) openVideoModal(videoUrl);
+                    });
+                });
+
                 // Render News & Home Notices
                 const noticesContainer = document.getElementById('news-notices-container');
                 const homeNoticesContainer = document.getElementById('home-notices-container');
@@ -772,6 +841,79 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (e.target === lightboxModal) closeLightbox();
             });
         }
+
+        const videoModal = document.getElementById('video-modal');
+        const videoModalClose = document.getElementById('video-modal-close');
+        const closeVideoModal = () => {
+            if (videoModal) videoModal.classList.remove('open');
+            const videoFrame = document.getElementById('video-frame');
+            const videoTag = document.getElementById('video-tag');
+            if (videoFrame) videoFrame.src = '';
+            if (videoTag) { videoTag.pause(); videoTag.src = ''; }
+            document.body.style.overflow = 'auto';
+        };
+
+        if (videoModalClose) {
+            videoModalClose.replaceWith(videoModalClose.cloneNode(true));
+            const newVideoClose = document.getElementById('video-modal-close');
+            newVideoClose.addEventListener('click', closeVideoModal);
+        }
+        if (videoModal) {
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) closeVideoModal();
+            });
+        }
+
+        document.querySelectorAll('.video-card-item').forEach(card => {
+            card.addEventListener('click', () => {
+                const videoUrl = card.getAttribute('data-video');
+                if (videoUrl) openVideoModal(videoUrl);
+            });
+        });
+    };
+
+    const openVideoModal = (rawUrl) => {
+        if (!rawUrl) return;
+        const videoModal = document.getElementById('video-modal');
+        const videoFrame = document.getElementById('video-frame');
+        const videoTag = document.getElementById('video-tag');
+        if (!videoModal) return;
+
+        let url = rawUrl.trim();
+        // Convert standard YouTube URLs to embed format with autoplay
+        if (url.includes('youtube.com/watch?v=')) {
+            const vId = url.split('watch?v=')[1].split('&')[0];
+            url = `https://www.youtube.com/embed/${vId}?autoplay=1&rel=0`;
+        } else if (url.includes('youtu.be/')) {
+            const vId = url.split('youtu.be/')[1].split('?')[0];
+            url = `https://www.youtube.com/embed/${vId}?autoplay=1&rel=0`;
+        } else if (url.includes('youtube.com/embed/') && !url.includes('autoplay=')) {
+            url += (url.includes('?') ? '&' : '?') + 'autoplay=1&rel=0';
+        }
+
+        if (url.includes('youtube.com') || url.includes('youtu.be') || url.includes('/embed/')) {
+            if (videoFrame) {
+                videoFrame.src = url;
+                videoFrame.style.display = 'block';
+            }
+            if (videoTag) {
+                videoTag.pause();
+                videoTag.style.display = 'none';
+            }
+        } else {
+            if (videoTag) {
+                videoTag.src = url;
+                videoTag.style.display = 'block';
+                videoTag.play().catch(() => {});
+            }
+            if (videoFrame) {
+                videoFrame.src = '';
+                videoFrame.style.display = 'none';
+            }
+        }
+
+        videoModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
     };
 
     let autoplayTimer = null;
@@ -853,8 +995,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Bind listeners for fee elements if calculator is present
     if (gradeSelect) {
         gradeSelect.addEventListener('change', calculateTotalFee);
-        if (siblingCheckbox) siblingCheckbox.addEventListener('change', calculateTotalFee);
         if (transportRadios) transportRadios.forEach(radio => radio.addEventListener('change', calculateTotalFee));
+        calculateTotalFee();
     }
 
 

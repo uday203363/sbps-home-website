@@ -97,12 +97,21 @@
                         <h3 class="card-title"><i class="fa-solid fa-calculator"></i> Calculate Fee Details</h3>
                         <div class="calc-form">
                             <div class="form-group">
-                                <label for="calc-grade">Grade / Class Level</label>
+                                <label for="calc-grade">Class / Grade Level</label>
                                 <select id="calc-grade" class="calc-input">
-                                    <option value="pre-primary" selected>Pre-Primary (Nursery, LKG, UKG)</option>
-                                    <option value="primary">Primary (Class I - V)</option>
-                                    <option value="middle">Middle School (Class VI - VIII)</option>
-                                    <option value="high">High School (Class IX - X)</option>
+                                    <option value="nursery" selected>Nursery</option>
+                                    <option value="lkg">LKG</option>
+                                    <option value="ukg">UKG</option>
+                                    <option value="class-1">Class I</option>
+                                    <option value="class-2">Class II</option>
+                                    <option value="class-3">Class III</option>
+                                    <option value="class-4">Class IV</option>
+                                    <option value="class-5">Class V</option>
+                                    <option value="class-6">Class VI</option>
+                                    <option value="class-7">Class VII</option>
+                                    <option value="class-8">Class VIII</option>
+                                    <option value="class-9">Class IX</option>
+                                    <option value="class-10">Class X</option>
                                 </select>
                             </div>
 
@@ -122,13 +131,6 @@
                                         <span>School Bus (5 km to 10+ km)</span>
                                     </label>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" id="calc-sibling" value="yes">
-                                    <span>Sibling Discount (5% discount on Tuition Fee)</span>
-                                </label>
                             </div>
                         </div>
                     </div>
@@ -154,10 +156,6 @@
                             <div class="receipt-row">
                                 <span>Transport / Bus Fee</span>
                                 <span class="price" id="res-transport">₹ 0</span>
-                            </div>
-                            <div class="receipt-row sibling-discount-row" id="sibling-discount-row" style="display: none;">
-                                <span>Sibling Discount (5%)</span>
-                                <span class="price discount-value" id="res-discount">- ₹ 0</span>
                             </div>
                         </div>
 

@@ -342,7 +342,8 @@ document.addEventListener('DOMContentLoaded', () => {
         campus: 'Campus',
         sports: 'Sports',
         events: 'Events',
-        academic: 'Classroom'
+        academic: 'Classroom',
+        activities: 'Activities'
     };
 
     // Save customized settings payload helper
@@ -368,6 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentSettingsCached = updatedPayload;
             renderAdminAnnouncements(currentSettingsCached.notifications);
             renderAdminGallery(currentSettingsCached.gallery);
+            renderAdminVideos(currentSettingsCached.videos);
             renderAdminFaculties(currentSettingsCached.faculties);
             renderAdminStudents(currentSettingsCached.students);
             renderAdminNotices(currentSettingsCached.notices);
@@ -445,6 +447,48 @@ document.addEventListener('DOMContentLoaded', () => {
                     const updatedGallery = [...currentSettingsCached.gallery];
                     updatedGallery.splice(index, 1);
                     await saveCustomSettings({ gallery: updatedGallery });
+                }
+            });
+        });
+    };
+
+    const renderAdminVideos = (videos) => {
+        const grid = document.getElementById('admin-video-preview-grid');
+        if (!grid) return;
+        
+        const list = videos || [];
+        if (document.getElementById('stat-card-videos')) {
+            document.getElementById('stat-card-videos').innerText = list.length;
+        }
+        if (list.length === 0) {
+            grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 25px; background: rgba(255,255,255,0.02); border-radius:8px;">No video showcase items added.</div>`;
+            return;
+        }
+        
+        grid.innerHTML = list.map((item, idx) => {
+            const thumb = item.thumbnail || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=400';
+            return `
+            <div style="background: #f8fafc; border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 8px; padding: 12px; position: relative;">
+                <div style="height: 130px; background-image: url('${thumb}'); background-size: cover; background-position: center; border-radius: 6px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-circle-play" style="font-size: 2.2rem; color: #f59e0b; background: rgba(0,0,0,0.5); border-radius: 50%;"></i>
+                </div>
+                <div style="font-size: 0.9rem; font-weight: 700; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; color: var(--primary-dark, #0f172a); margin-bottom: 4px;" title="${item.title}">${item.title}</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-overflow: ellipsis; overflow: hidden; white-space: nowrap; margin-bottom: 6px;">${item.description || ''}</div>
+                <div style="font-size: 0.72rem; color: var(--primary-color); text-transform: uppercase; font-weight: bold;">${item.category || 'general'}</div>
+                <button class="delete-video-btn" data-index="${idx}" style="position: absolute; top: 20px; right: 20px; background: rgba(211, 47, 47, 0.9); border: none; color: white; border-radius: 4px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-md);">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+        `}).join('');
+        
+        // Bind delete triggers
+        grid.querySelectorAll('.delete-video-btn').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const index = parseInt(btn.getAttribute('data-index'), 10);
+                if (confirm('Are you sure you want to delete this video from the showcase?')) {
+                    const updatedVideos = [...(currentSettingsCached.videos || [])];
+                    updatedVideos.splice(index, 1);
+                    await saveCustomSettings({ videos: updatedVideos });
                 }
             });
         });
@@ -581,6 +625,43 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     };
+
+    const renderAdminTestimonials = (testimonials) => {
+        const tbody = document.getElementById('testimonials-list-tbody');
+        if (!tbody) return;
+        const list = testimonials || [];
+        if (list.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" class="text-center" style="color:var(--text-muted); padding: 15px;">No parent testimonials added.</td></tr>`;
+            return;
+        }
+        tbody.innerHTML = list.map((item, idx) => {
+            const ratingStars = '★'.repeat(item.rating || 5) + '☆'.repeat(5 - (item.rating || 5));
+            return `
+                <tr>
+                    <td style="font-weight: 700; color: var(--primary-dark, #0f172a); white-space: nowrap;">${item.parentName}</td>
+                    <td style="color: var(--text-dark, #334155); font-size: 0.85rem; white-space: nowrap;">${item.studentInfo || ''}</td>
+                    <td style="font-size: 0.85rem; color: var(--text-dark, #334155); font-style: italic;">"${item.quote}"</td>
+                    <td style="text-align: center; color: var(--accent-gold, #f59e0b); white-space: nowrap;">${ratingStars}</td>
+                    <td style="text-align: center;">
+                        <button class="btn delete-testimonial-btn" data-index="${idx}" style="background-color: var(--secondary-color); color: #fff; border-radius: 4px; padding: 6px 12px; border: none; font-size: 0.8rem; cursor: pointer;">
+                            <i class="fa-solid fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            `;
+        }).join('');
+
+        tbody.querySelectorAll('.delete-testimonial-btn').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const index = parseInt(btn.getAttribute('data-index'), 10);
+                if (confirm('Are you sure you want to delete this parent testimonial?')) {
+                    const updated = [...(currentSettingsCached.testimonials || [])];
+                    updated.splice(index, 1);
+                    await saveCustomSettings({ testimonials: updated });
+                }
+            });
+        });
+    };
     /* ==========================================================================
        4. Fetch & Update Settings Details (Contacts & Fees)
        ========================================================================== */
@@ -632,10 +713,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('fee-trans-under5').value = settings.transportFees['under-5km'] || 0;
                 document.getElementById('fee-trans-above5').value = settings.transportFees['above-5km'] || 0;
             }
-            
-            if (settings.siblingDiscountPercent !== undefined) {
-                document.getElementById('fee-discount-sibling').value = settings.siblingDiscountPercent;
-            }
 
             // Populate Statistics fields
             if (settings.stats) {
@@ -674,10 +751,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Render custom managers lists
             renderAdminAnnouncements(settings.notifications);
             renderAdminGallery(settings.gallery);
+            renderAdminVideos(settings.videos);
             renderAdminFaculties(settings.faculties);
             renderAdminStudents(settings.students);
             renderAdminNotices(settings.notices);
             renderAdminEvents(settings.events);
+            renderAdminTestimonials(settings.testimonials);
         }
     };
 
@@ -729,7 +808,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 'under-5km': parseInt(document.getElementById('fee-trans-under5')?.value || '0', 10),
                 'above-5km': parseInt(document.getElementById('fee-trans-above5')?.value || '0', 10)
             },
-            siblingDiscountPercent: parseInt(document.getElementById('fee-discount-sibling')?.value || '0', 10),
             about: {
                 heading: document.getElementById('cms-about-heading')?.value || (base.about ? base.about.heading : ''),
                 text1: document.getElementById('cms-about-text1')?.value || (base.about ? base.about.text1 : ''),
@@ -750,10 +828,12 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             notifications: base.notifications || [],
             gallery: base.gallery || [],
+            videos: base.videos || [],
             faculties: base.faculties || [],
             students: base.students || [],
             notices: base.notices || [],
-            events: base.events || []
+            events: base.events || [],
+            testimonials: base.testimonials || []
         };
         return payload;
     };
@@ -1086,6 +1166,100 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Bind Parent Testimonial Add Form
+    const testimonialForm = document.getElementById('testimonial-manager-form');
+    if (testimonialForm) {
+        testimonialForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const parentName = document.getElementById('testi-parent-name').value.trim();
+            const studentInfo = document.getElementById('testi-student-info').value.trim();
+            const quote = document.getElementById('testi-quote').value.trim();
+            const rating = parseInt(document.getElementById('testi-rating').value, 10) || 5;
+            const resDiv = document.getElementById('testimonial-manager-response');
+
+            if (!parentName || !studentInfo || !quote) return;
+
+            const newTestimonial = { parentName, studentInfo, quote, rating };
+            const currentTestimonials = currentSettingsCached.testimonials || [];
+            const updatedTestimonials = [...currentTestimonials, newTestimonial];
+
+            await saveCustomSettings({ testimonials: updatedTestimonials });
+            resDiv.className = 'form-response success';
+            resDiv.innerText = 'Parent testimonial added successfully!';
+            resDiv.style.display = 'block';
+            testimonialForm.reset();
+            setTimeout(() => { resDiv.style.display = 'none'; }, 4000);
+        });
+    }
+
+    // Helper for uploading single avatar photos directly from local disk
+    const setupAvatarFileUpload = (fileInputId, textInputId, statusDivId) => {
+        const fileInput = document.getElementById(fileInputId);
+        const textInput = document.getElementById(textInputId);
+        const statusDiv = document.getElementById(statusDivId);
+        if (!fileInput || !textInput) return;
+
+        fileInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            if (statusDiv) {
+                statusDiv.className = 'form-response';
+                statusDiv.style.display = 'block';
+                statusDiv.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading photo from local disk...';
+            }
+
+            const reader = new FileReader();
+            reader.onload = async () => {
+                const token = getToken();
+                try {
+                    const { ok, data } = await safeFetchJson('/api/admin/upload', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            filename: file.name,
+                            base64Data: reader.result
+                        })
+                    });
+
+                    if (ok && data && data.success) {
+                        textInput.value = data.url;
+                        if (statusDiv) {
+                            statusDiv.className = 'form-response success';
+                            statusDiv.innerText = 'Photo uploaded successfully! Click Save Copy Content below to apply.';
+                        }
+                    } else {
+                        if (statusDiv) {
+                            statusDiv.className = 'form-response error';
+                            statusDiv.innerText = (data && data.message) || 'Image upload failed on server.';
+                        }
+                    }
+                } catch (err) {
+                    if (statusDiv) {
+                        statusDiv.className = 'form-response error';
+                        statusDiv.innerText = 'Connection error uploading photo.';
+                    }
+                } finally {
+                    setTimeout(() => { if (statusDiv) statusDiv.style.display = 'none'; }, 5000);
+                }
+            };
+
+            reader.onerror = () => {
+                if (statusDiv) {
+                    statusDiv.className = 'form-response error';
+                    statusDiv.innerText = 'Error reading file.';
+                }
+            };
+
+            reader.readAsDataURL(file);
+        });
+    };
+
+    setupAvatarFileUpload('cms-chairman-avatar-file', 'cms-chairman-avatar', 'cms-chairman-avatar-status');
+
     // Bind Photo Gallery Upload form
     const galleryForm = document.getElementById('gallery-upload-form');
     if (galleryForm) {
@@ -1171,6 +1345,118 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             
             reader.readAsDataURL(file);
+        });
+    }
+
+    // Bind Video Gallery Upload form
+    const videoForm = document.getElementById('video-upload-form');
+    if (videoForm) {
+        videoForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const titleInput = document.getElementById('gallery-video-title');
+            const categorySelect = document.getElementById('gallery-video-category');
+            const urlInput = document.getElementById('gallery-video-url');
+            const videoFileInput = document.getElementById('gallery-video-file');
+            const thumbFileInput = document.getElementById('gallery-video-thumbnail-file');
+            const thumbUrlInput = document.getElementById('gallery-video-thumbnail-url');
+            const descInput = document.getElementById('gallery-video-desc');
+            const responseDiv = document.getElementById('video-upload-response');
+            
+            const submitBtn = videoForm.querySelector('button[type="submit"]');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnSpinner = submitBtn.querySelector('.btn-spinner');
+            
+            const token = getToken();
+            if (!token) return;
+
+            btnText.style.display = 'none';
+            btnSpinner.style.display = 'inline-flex';
+            responseDiv.style.display = 'none';
+
+            const uploadFileAsync = (fileObj) => {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = async () => {
+                        try {
+                            const { ok, data } = await safeFetchJson('/api/admin/upload', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${token}`
+                                },
+                                body: JSON.stringify({
+                                    filename: fileObj.name,
+                                    base64Data: reader.result
+                                })
+                            });
+                            if (ok && data && data.success) {
+                                resolve(data.url);
+                            } else {
+                                reject(new Error((data && data.message) || 'Upload failed'));
+                            }
+                        } catch (err) {
+                            reject(err);
+                        }
+                    };
+                    reader.onerror = (err) => reject(err);
+                    reader.readAsDataURL(fileObj);
+                });
+            };
+
+            try {
+                let finalVideoUrl = urlInput ? urlInput.value.trim() : '';
+                if (videoFileInput && videoFileInput.files.length > 0) {
+                    finalVideoUrl = await uploadFileAsync(videoFileInput.files[0]);
+                }
+
+                if (!finalVideoUrl) {
+                    throw new Error('Please provide a Video URL link or select a Video File to upload.');
+                }
+
+                // Format YouTube links if necessary
+                if (finalVideoUrl.includes('youtube.com/watch?v=')) {
+                    finalVideoUrl = finalVideoUrl.replace('watch?v=', 'embed/');
+                } else if (finalVideoUrl.includes('youtu.be/')) {
+                    const videoId = finalVideoUrl.split('youtu.be/')[1].split('?')[0];
+                    finalVideoUrl = `https://www.youtube.com/embed/${videoId}`;
+                }
+
+                let finalThumbnailUrl = thumbUrlInput ? thumbUrlInput.value.trim() : '';
+                if (thumbFileInput && thumbFileInput.files.length > 0) {
+                    finalThumbnailUrl = await uploadFileAsync(thumbFileInput.files[0]);
+                }
+
+                if (!finalThumbnailUrl) {
+                    finalThumbnailUrl = 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=600';
+                }
+
+                const newVideo = {
+                    title: titleInput.value.trim(),
+                    category: categorySelect.value,
+                    videoUrl: finalVideoUrl,
+                    thumbnail: finalThumbnailUrl,
+                    description: descInput ? descInput.value.trim() : ''
+                };
+
+                const currentVideos = currentSettingsCached.videos || [];
+                const updatedVideos = [...currentVideos, newVideo];
+
+                await saveCustomSettings({ videos: updatedVideos });
+
+                responseDiv.className = 'form-response success';
+                responseDiv.innerText = 'Video added to the gallery showcase successfully!';
+                responseDiv.style.display = 'block';
+                videoForm.reset();
+            } catch (err) {
+                console.error('[Video Submit Error]', err);
+                responseDiv.className = 'form-response error';
+                responseDiv.innerText = err.message || 'Error adding video to gallery.';
+                responseDiv.style.display = 'block';
+            } finally {
+                btnText.style.display = 'inline-flex';
+                btnSpinner.style.display = 'none';
+                setTimeout(() => { responseDiv.style.display = 'none'; }, 6000);
+            }
         });
     }
 

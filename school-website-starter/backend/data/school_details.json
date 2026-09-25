@@ -1,7 +1,7 @@
 {
   "phone": "9160160690",
   "mobile": "09515754762",
-  "email": "sribhashyampublicschool@gmail.com",
+  "email": "Sribhashyamforyou@gmail.com",
   "address": "45/150-12, Kadapa Rd, near S.V. College of Engineering, TarakaRama Nagar, Nagarajupeta, Andhra Pradesh 516004",
   "motto": "Knowledge - Character - Excellence",
   "slogan": "Building Tomorrow's Leaders Today",
@@ -42,7 +42,6 @@
     "under-5km": 12000,
     "above-5km": 18000
   },
-  "siblingDiscountPercent": 5,
   "about": {
     "heading": "Welcome to Sri Bhashyam Public School",
     "text1": "Established with a commitment to academic excellence, moral integrity, and modern pedagogical practices, Sri Bhashyam Public School offers a nurturing environment for students from Nursery through Class X.",
@@ -52,7 +51,7 @@
   "chairman": {
     "name": "V. Naga Subba Reddy",
     "role": "correspondent",
-    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300",
+    "avatar": "https://oetaqaapbkqnobkztvav.supabase.co/storage/v1/object/public/gallery/photo_1790160059545_3bsuj.png",
     "message": "Welcome to Sri Bhashyam Public School. Our mission is to empower young minds with high moral standards, analytical capabilities, and leadership qualities. We believe every child possesses unique potential waiting to be unlocked."
   },
   "visionMission": {
@@ -62,7 +61,7 @@
       "Bridge academic theory with actual practical exposure",
       "Focus on values-driven character building"
     ],
-    "missionText": "At Sri Bhashyam Public School, our mission is to provide quality education in a nurturing and inspiring environment that develops every student’s knowledge, creativity, confidence, and critical thinking. We strive to build strong character, discipline, leadership, and respect for others through holistic learning. By combining academic excellence with technology, sports, arts, and life skills, we empower our students to become responsible, compassionate, and successful citizens of tomorrow.",
+    "missionText": "At Sri Bhashyam Public School, our mission is to provide quality education in a nurturing and inspiring environment that develops every studentÃ¢â‚¬â„¢s knowledge, creativity, confidence, and critical thinking. We strive to build strong character, discipline, leadership, and respect for others through holistic learning. By combining academic excellence with technology, sports, arts, and life skills, we empower our students to become responsible, compassionate, and successful citizens of tomorrow.",
     "missionBullets": [
       "Provide continuous infrastructure improvements",
       "Empower teachers with modern digital pedagogical tools",
@@ -217,6 +216,42 @@
       "image": "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?auto=format&fit=crop&q=80&w=600",
       "title": "Annual Athletic Games",
       "category": "sports"
+    },
+    {
+      "tag": "Activity",
+      "image": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600",
+      "title": "Art & Craft Workshop",
+      "category": "activities"
+    },
+    {
+      "tag": "Activity",
+      "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=600",
+      "title": "Science Fair Exhibition",
+      "category": "activities"
+    },
+    {
+      "tag": "Activity",
+      "image": "https://images.unsplash.com/photo-1504509546545-e000b4a62425?auto=format&fit=crop&q=80&w=600",
+      "title": "Yoga & Wellness Session",
+      "category": "activities"
+    },
+    {
+      "tag": "Activity",
+      "image": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&q=80&w=600",
+      "title": "Music & Cultural Program",
+      "category": "activities"
+    },
+    {
+      "tag": "Activity",
+      "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=600",
+      "title": "Annual Day Drama & Skit",
+      "category": "activities"
+    },
+    {
+      "tag": "Activity",
+      "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=600",
+      "title": "Debate & Public Speaking",
+      "category": "activities"
     }
   ],
   "faculties": [
@@ -273,6 +308,22 @@
       "month": "SEP",
       "title": "Teachers' Day Celebrations & Student Leadership Day",
       "description": "Senior students step into educator roles to celebrate and honor our teaching staff."
+    }
+  ],
+  "videos": [
+    {
+      "title": "Sri Bhashyam Campus Tour",
+      "description": "Take a digital walk through our digital science laboratories, classrooms, and sports grids.",
+      "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1",
+      "thumbnail": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=600",
+      "category": "campus"
+    },
+    {
+      "title": "Annual Athletic Events Highlights",
+      "description": "Watch athletic competitions, drills, and award distributions from the Annual Meet.",
+      "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1",
+      "thumbnail": "https://images.unsplash.com/photo-1460518451285-cd7ab794d157?auto=format&fit=crop&q=80&w=600",
+      "category": "sports"
     }
   ]
 }
