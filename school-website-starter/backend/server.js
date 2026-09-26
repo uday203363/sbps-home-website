@@ -69,6 +69,7 @@ try {
 }
 
 function persistSessions() {
+    if (process.env.VERCEL) return;
     try {
         const dataDir = path.join(__dirname, 'data');
         if (!fs.existsSync(dataDir)) {
@@ -268,12 +269,12 @@ app.post('/api/admin/login', async (req, res) => {
                 const { data, error } = await supabase
                     .from('admins')
                     .select('*')
-                    .eq('username', cleanUsername)
+                    .ilike('username', cleanUsername)
                     .eq('password', cleanPassword)
                     .maybeSingle();
 
                 if (!error && data) {
-                    const token = createAdminToken({ username: cleanUsername, name: data.name });
+                    const token = createAdminToken({ username: data.username, name: data.name });
                     activeSessions.add(token);
                     persistSessions();
                     console.log(`[Admin Logged In] Username: ${cleanUsername} (via Supabase)`);
@@ -337,7 +338,7 @@ app.post('/api/admin/upload', authAdmin, async (req, res) => {
         const ext = path.extname(filename) || '.jpg';
         const safeFilename = 'photo_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7) + ext;
 
-        // Try Supabase Storage first
+        // 1. Try Supabase Storage first
         if (supabase) {
             try {
                 const { error: uploadError } = await supabase.storage
@@ -351,18 +352,29 @@ app.post('/api/admin/upload', authAdmin, async (req, res) => {
 
                     console.log(`[Upload API] Saved to Supabase Storage: ${publicUrlData.publicUrl}`);
                     return res.status(200).json({ success: true, url: publicUrlData.publicUrl });
+                } else {
+                    console.warn('[Supabase Storage Upload Warning]', uploadError.message);
                 }
             } catch (storageErr) {
-                console.error('[Supabase Storage Exception]', storageErr.message);
+                console.warn('[Supabase Storage Exception]', storageErr.message);
             }
         }
 
-        // Local Storage Fallback
-        const filePath = path.join(uploadDir, safeFilename);
-        fs.writeFileSync(filePath, buffer);
-        console.log(`[Upload API] Saved locally to: ${filePath}`);
+        // 2. Local Storage Fallback (only for local development)
+        if (!process.env.VERCEL) {
+            try {
+                const filePath = path.join(uploadDir, safeFilename);
+                fs.writeFileSync(filePath, buffer);
+                console.log(`[Upload API] Saved locally to: ${filePath}`);
+                return res.status(200).json({ success: true, url: `/uploads/${safeFilename}` });
+            } catch (fsErr) {
+                console.warn('[Local Upload Write Error]', fsErr.message);
+            }
+        }
 
-        return res.status(200).json({ success: true, url: `/uploads/${safeFilename}` });
+        // 3. Persistent Data URI fallback on Vercel Serverless
+        // Returns the Base64 Data URI so the image is stored in Supabase school_details and displays on all pages
+        return res.status(200).json({ success: true, url: base64Data });
     } catch (err) {
         console.error('[Upload Error]', err.message);
         return res.status(500).json({ success: false, message: 'Server error saving uploaded file.' });
@@ -400,11 +412,7 @@ app.post('/api/admin/settings', authAdmin, async (req, res) => {
             ...(req.body || {})
         };
 
-        // 1. Sync to local JSON database
-        const settingsPath = path.join(__dirname, 'data', 'school_details.json');
-        fs.writeFileSync(settingsPath, JSON.stringify(mergedSettings, null, 2));
-
-        // 2. Sync to Supabase DB if configured
+        // 1. Sync to Supabase DB
         if (supabase) {
             try {
                 const { error } = await supabase
@@ -418,6 +426,16 @@ app.post('/api/admin/settings', authAdmin, async (req, res) => {
                 }
             } catch (supabaseErr) {
                 console.error('[Supabase Settings Write Exception]', supabaseErr.message);
+            }
+        }
+
+        // 2. Sync to local JSON database (local dev only; skipped on Vercel)
+        if (!process.env.VERCEL) {
+            try {
+                const settingsPath = path.join(__dirname, 'data', 'school_details.json');
+                fs.writeFileSync(settingsPath, JSON.stringify(mergedSettings, null, 2));
+            } catch (fsErr) {
+                console.warn('[Local Settings Write Error]', fsErr.message);
             }
         }
 
@@ -491,12 +509,18 @@ app.delete('/api/admin/inquiries/:id', authAdmin, async (req, res) => {
     try {
         const { id } = req.params;
 
-        // 1. Delete from Local JSON DB
-        const inquiryPath = path.join(__dirname, 'data', 'inquiries.json');
-        if (fs.existsSync(inquiryPath)) {
-            const inquiries = JSON.parse(fs.readFileSync(inquiryPath, 'utf8') || '[]');
-            const filtered = inquiries.filter(inq => inq.id !== id);
-            fs.writeFileSync(inquiryPath, JSON.stringify(filtered, null, 2));
+        // 1. Delete from Local JSON DB (local dev only)
+        if (!process.env.VERCEL) {
+            try {
+                const inquiryPath = path.join(__dirname, 'data', 'inquiries.json');
+                if (fs.existsSync(inquiryPath)) {
+                    const inquiries = JSON.parse(fs.readFileSync(inquiryPath, 'utf8') || '[]');
+                    const filtered = inquiries.filter(inq => inq.id !== id);
+                    fs.writeFileSync(inquiryPath, JSON.stringify(filtered, null, 2));
+                }
+            } catch (fsErr) {
+                console.warn('[Local Inquiry Delete Error]', fsErr.message);
+            }
         }
 
         // 2. Delete from Supabase
@@ -547,28 +571,35 @@ app.post('/api/inquiry', async (req, res) => {
             }
         }
 
-        // 2. Local Fallback DB
-        const inquiryPath = path.join(__dirname, 'data', 'inquiries.json');
-        let inquiries = [];
-        if (fs.existsSync(inquiryPath)) {
-            inquiries = JSON.parse(fs.readFileSync(inquiryPath, 'utf8') || '[]');
+        // 2. Local Fallback DB (local dev only)
+        if (!process.env.VERCEL) {
+            try {
+                const inquiryPath = path.join(__dirname, 'data', 'inquiries.json');
+                let inquiries = [];
+                if (fs.existsSync(inquiryPath)) {
+                    inquiries = JSON.parse(fs.readFileSync(inquiryPath, 'utf8') || '[]');
+                }
+
+                const newInquiry = {
+                    id: Date.now().toString(36) + Math.random().toString(36).substring(2, 7),
+                    name,
+                    email: email || '',
+                    phone,
+                    grade: grade || 'N/A',
+                    message: message || '',
+                    type: type || 'General Inquiry',
+                    timestamp: new Date().toISOString()
+                };
+
+                inquiries.push(newInquiry);
+                fs.writeFileSync(inquiryPath, JSON.stringify(inquiries, null, 2));
+
+                console.log(`[Inquiry Received] ${name} (${type}) via Local Fallback`);
+            } catch (fsErr) {
+                console.warn('[Local Inquiry Write Error]', fsErr.message);
+            }
         }
 
-        const newInquiry = {
-            id: Date.now().toString(36) + Math.random().toString(36).substring(2, 7),
-            name,
-            email: email || '',
-            phone,
-            grade: grade || 'N/A',
-            message: message || '',
-            type: type || 'General Inquiry',
-            timestamp: new Date().toISOString()
-        };
-
-        inquiries.push(newInquiry);
-        fs.writeFileSync(inquiryPath, JSON.stringify(inquiries, null, 2));
-
-        console.log(`[Inquiry Received] ${name} (${type}) via Local Fallback`);
         return res.status(200).json({ success: true, message: 'Your inquiry has been submitted successfully! We will contact you soon.' });
     } catch (error) {
         console.error('Error handling inquiry:', error.message);
@@ -640,18 +671,24 @@ app.post('/api/admin/users', authAdmin, async (req, res) => {
             }
         }
 
-        const adminsPath = path.join(__dirname, 'data', 'admins.json');
-        let admins = [];
-        if (fs.existsSync(adminsPath)) {
-            admins = JSON.parse(fs.readFileSync(adminsPath, 'utf8') || '[]');
-        }
+        if (!process.env.VERCEL) {
+            try {
+                const adminsPath = path.join(__dirname, 'data', 'admins.json');
+                let admins = [];
+                if (fs.existsSync(adminsPath)) {
+                    admins = JSON.parse(fs.readFileSync(adminsPath, 'utf8') || '[]');
+                }
 
-        if (admins.some(a => a.username === username)) {
-            return res.status(409).json({ success: false, message: 'Username already exists.' });
-        }
+                if (admins.some(a => a.username === username)) {
+                    return res.status(409).json({ success: false, message: 'Username already exists.' });
+                }
 
-        admins.push({ username, password, name });
-        fs.writeFileSync(adminsPath, JSON.stringify(admins, null, 2));
+                admins.push({ username, password, name });
+                fs.writeFileSync(adminsPath, JSON.stringify(admins, null, 2));
+            } catch (fsErr) {
+                console.warn('[Local Admin Write Error]', fsErr.message);
+            }
+        }
 
         return res.status(200).json({ success: true, message: `Admin account '${username}' registered successfully!` });
     } catch (error) {
