@@ -5004,35 +5004,40 @@ img, video, iframe, canvas, svg {
 
     /* Header & Branding */
     .main-header {
-        padding: 6px 0;
+        padding: 4px 0 !important;
         width: 100%;
+        background: var(--bg-white);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
     .header-container {
         padding: 0 12px !important;
-        min-height: 52px;
+        min-height: 48px !important;
+        height: auto !important;
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 8px;
         box-sizing: border-box;
     }
 
     .logo-area {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
         text-decoration: none;
-        max-width: calc(100% - 46px);
+        flex: 1;
         min-width: 0;
         overflow: hidden;
+        padding: 2px 0;
     }
 
     .school-logo-img {
-        width: 42px !important;
-        height: 42px !important;
-        min-width: 42px !important;
-        max-width: 42px !important;
+        width: 50px !important;
+        height: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
         object-fit: contain;
         flex-shrink: 0;
     }
@@ -5043,45 +5048,58 @@ img, video, iframe, canvas, svg {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        gap: 1px;
     }
 
     .school-title {
-        font-size: 1.12rem !important;
-        font-weight: 800;
-        line-height: 1.15;
-        letter-spacing: 0.3px;
+        font-family: var(--font-heading);
+        font-size: clamp(1.22rem, 5.2vw, 1.48rem) !important;
+        font-weight: 900;
+        color: var(--secondary-color);
+        line-height: 1.08;
+        letter-spacing: 0.5px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        margin: 0;
+        padding: 0;
     }
 
     .school-subtitle {
-        font-size: 0.58rem !important;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        white-space: nowrap;
-        line-height: 1.2;
-    }
-
-    .motto-text {
-        font-size: 0.55rem !important;
-        line-height: 1.1;
-        margin-top: 1px;
+        font-family: var(--font-body);
+        font-size: clamp(0.62rem, 2.7vw, 0.74rem) !important;
+        font-weight: 800;
+        color: var(--primary-color);
+        letter-spacing: 0.8px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 180px;
+        line-height: 1.15;
+        margin: 0;
+        padding: 0;
+    }
+
+    .motto-text {
+        display: none !important;
     }
 
     .mobile-toggle {
-        width: 38px !important;
-        height: 38px !important;
-        min-width: 38px !important;
-        max-width: 38px !important;
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        max-width: 40px !important;
         font-size: 1.25rem !important;
         border-radius: 8px;
         margin: 0;
+        padding: 0;
         flex-shrink: 0;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        background: rgba(30, 58, 138, 0.05);
+        border: 1.5px solid var(--border-color);
+        color: var(--primary-dark);
+        cursor: pointer;
     }
 
     /* Announcements Ticker */
@@ -5397,21 +5415,29 @@ img, video, iframe, canvas, svg {
         box-sizing: border-box;
     }
 
+    .header-container {
+        padding: 0 10px !important;
+    }
+
+    .logo-area {
+        gap: 8px;
+    }
+
     .school-logo-img {
-        width: 38px !important;
-        height: 38px !important;
-        min-width: 38px !important;
-        max-width: 38px !important;
+        width: 46px !important;
+        height: 46px !important;
+        min-width: 46px !important;
+        max-width: 46px !important;
     }
 
     .school-title {
-        font-size: 1.05rem !important;
-        letter-spacing: 0.2px;
+        font-size: 1.25rem !important;
+        letter-spacing: 0.3px;
     }
 
     .school-subtitle {
-        font-size: 0.55rem !important;
-        letter-spacing: 0.3px;
+        font-size: 0.64rem !important;
+        letter-spacing: 0.6px;
     }
 
     .motto-text {
@@ -5530,28 +5556,37 @@ img, video, iframe, canvas, svg {
         box-sizing: border-box;
     }
 
+    .header-container {
+        padding: 0 8px !important;
+    }
+
+    .logo-area {
+        gap: 6px;
+    }
+
     .school-logo-img {
-        width: 34px !important;
-        height: 34px !important;
-        min-width: 34px !important;
-        max-width: 34px !important;
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        max-width: 40px !important;
     }
 
     .school-title {
-        font-size: 0.95rem !important;
-        letter-spacing: 0;
+        font-size: 1.12rem !important;
+        letter-spacing: 0.2px;
     }
 
     .school-subtitle {
-        font-size: 0.5rem !important;
+        font-size: 0.58rem !important;
+        letter-spacing: 0.4px;
     }
 
     .mobile-toggle {
-        width: 34px !important;
-        height: 34px !important;
-        min-width: 34px !important;
-        max-width: 34px !important;
-        font-size: 1.1rem !important;
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        max-width: 36px !important;
+        font-size: 1.15rem !important;
     }
 
     .hero-title {
