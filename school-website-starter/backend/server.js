@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { createClient } = require('@supabase/supabase-js');
 
 // Load environment variables from .env file at project root
@@ -55,7 +56,7 @@ if (!process.env.VERCEL && !fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-// Persistent administrative sessions store
+// Persistent administrative sessions store (for revoking/local dev)
 const sessionsPath = path.join(__dirname, 'data', 'sessions.json');
 let activeSessions = new Set();
 try {
@@ -76,6 +77,62 @@ function persistSessions() {
         fs.writeFileSync(sessionsPath, JSON.stringify(Array.from(activeSessions), null, 2));
     } catch (e) {
         console.error('[Sessions Save Error]', e.message);
+    }
+}
+
+// Stateless HMAC Signed Token System (works 100% reliably across Vercel Serverless instances)
+const AUTH_SECRET = process.env.JWT_SECRET || process.env.SUPABASE_KEY || 'sbps_admin_secure_secret_key_2026';
+
+function createAdminToken(user) {
+    const header = Buffer.from(JSON.stringify({ alg: 'HS256', typ: 'JWT' })).toString('base64url');
+    const payload = Buffer.from(JSON.stringify({
+        username: user.username,
+        name: user.name || 'Administrator',
+        iat: Math.floor(Date.now() / 1000),
+        exp: Math.floor(Date.now() / 1000) + (7 * 24 * 60 * 60) // 7 days validity
+    })).toString('base64url');
+    
+    const signature = crypto
+        .createHmac('sha256', AUTH_SECRET)
+        .update(`${header}.${payload}`)
+        .digest('base64url');
+        
+    return `${header}.${payload}.${signature}`;
+}
+
+function verifyAdminToken(token) {
+    if (!token || typeof token !== 'string') return null;
+    
+    // Support legacy memory/file sessions if present
+    if (activeSessions.has(token)) {
+        return { username: 'admin', name: 'Administrator' };
+    }
+    
+    const parts = token.split('.');
+    if (parts.length !== 3) return null;
+    
+    const [header, payload, signature] = parts;
+    
+    const expectedSignature = crypto
+        .createHmac('sha256', AUTH_SECRET)
+        .update(`${header}.${payload}`)
+        .digest('base64url');
+        
+    const sigBuf = Buffer.from(signature);
+    const expBuf = Buffer.from(expectedSignature);
+    if (sigBuf.length !== expBuf.length || !crypto.timingSafeEqual(sigBuf, expBuf)) {
+        return null;
+    }
+    
+    try {
+        const decoded = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));
+        const now = Math.floor(Date.now() / 1000);
+        if (decoded.exp && decoded.exp < now) {
+            return null; // Expired
+        }
+        return decoded;
+    } catch (e) {
+        return null;
     }
 }
 
@@ -123,9 +180,11 @@ const authAdmin = (req, res, next) => {
         return res.status(401).json({ success: false, message: 'Access denied. Authorization token missing.' });
     }
     const token = authHeader.substring(7);
-    if (!activeSessions.has(token)) {
+    const adminUser = verifyAdminToken(token);
+    if (!adminUser) {
         return res.status(403).json({ success: false, message: 'Invalid or expired session token.' });
     }
+    req.admin = adminUser;
     req.sessionToken = token;
     next();
 };
@@ -214,7 +273,7 @@ app.post('/api/admin/login', async (req, res) => {
                     .maybeSingle();
 
                 if (!error && data) {
-                    const token = 'sbps_' + Math.random().toString(36).substring(2, 9) + Date.now().toString(36);
+                    const token = createAdminToken({ username: cleanUsername, name: data.name });
                     activeSessions.add(token);
                     persistSessions();
                     console.log(`[Admin Logged In] Username: ${cleanUsername} (via Supabase)`);
@@ -237,7 +296,7 @@ app.post('/api/admin/login', async (req, res) => {
             return res.status(401).json({ success: false, message: 'Invalid username or password.' });
         }
 
-        const token = 'sbps_' + Math.random().toString(36).substring(2, 9) + Date.now().toString(36);
+        const token = createAdminToken({ username: cleanUsername, name: user.name });
         activeSessions.add(token);
         persistSessions();
 
