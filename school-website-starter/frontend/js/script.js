@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
     };
 
-    mobileToggle.addEventListener('click', openDrawer);
-    drawerClose.addEventListener('click', closeDrawer);
-    drawerOverlay.addEventListener('click', closeDrawer);
-    drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
+    if (mobileToggle) mobileToggle.addEventListener('click', openDrawer);
+    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+    if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+    if (drawerLinks) drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
 
 
     /* ==========================================================================
@@ -223,15 +223,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     tickerContent.innerHTML = '<span class="ticker-item">Welcome to Sri Bhashyam Public School! Nurturing minds, shaping leaders.</span>';
                 }
 
-                if (document.getElementById('top-phone')) document.getElementById('top-phone').innerText = settings.phone;
-                if (document.getElementById('top-email')) document.getElementById('top-email').innerText = settings.email;
+                if (document.getElementById('top-phone')) document.getElementById('top-phone').innerText = settings.phone || '+91 9160160690';
+                if (document.getElementById('top-email')) document.getElementById('top-email').innerText = settings.email || 'sribhashyamforyou@gmail.com';
                 
                 if (document.getElementById('top-address-short')) {
-                    const parts = settings.address.split(',');
-                    const shortAddr = parts.length > 2 
-                        ? `${parts[parts.length-3].trim()}, ${parts[parts.length-2].trim()}, ${parts[parts.length-1].trim()}` 
-                        : settings.address;
-                    document.getElementById('top-address-short').innerText = shortAddr;
+                    if (settings.address) {
+                        const parts = settings.address.split(',');
+                        const shortAddr = parts.length > 2 
+                            ? `${parts[parts.length-3].trim()}, ${parts[parts.length-2].trim()}, ${parts[parts.length-1].trim()}` 
+                            : (settings.address.length > 35 ? settings.address.substring(0, 35) + '...' : settings.address);
+                        document.getElementById('top-address-short').innerText = shortAddr;
+                    }
                 }
                 
                 if (document.getElementById('contact-address')) document.getElementById('contact-address').innerText = settings.address;

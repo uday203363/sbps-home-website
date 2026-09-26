@@ -194,8 +194,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================================================
-       2. Dashboard Layout Tab Toggles
+       2. Dashboard Layout Tab Toggles & Mobile Drawer
        ========================================================================== */
+    const adminMobileToggle = document.getElementById('admin-mobile-toggle');
+    const adminSidebarClose = document.getElementById('admin-sidebar-close');
+    const adminSidebarOverlay = document.getElementById('admin-sidebar-overlay');
+    const dashboardSidebar = document.getElementById('dashboard-sidebar');
+
+    const openAdminSidebar = () => {
+        if (dashboardSidebar) dashboardSidebar.classList.add('open');
+        if (adminSidebarOverlay) adminSidebarOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeAdminSidebar = () => {
+        if (dashboardSidebar) dashboardSidebar.classList.remove('open');
+        if (adminSidebarOverlay) adminSidebarOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    };
+
+    if (adminMobileToggle) adminMobileToggle.addEventListener('click', openAdminSidebar);
+    if (adminSidebarClose) adminSidebarClose.addEventListener('click', closeAdminSidebar);
+    if (adminSidebarOverlay) adminSidebarOverlay.addEventListener('click', closeAdminSidebar);
+
     navButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const targetTab = btn.getAttribute('data-tab');
@@ -217,6 +238,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const meta = navMeta[targetTab] || { title: 'Admin Panel', subtitle: '' };
             viewTitle.innerText = meta.title;
             viewSubtitle.innerText = meta.subtitle;
+
+            // Auto-close sidebar on mobile/tablet after selecting tab
+            if (window.innerWidth <= 1024) {
+                closeAdminSidebar();
+            }
         });
     });
 

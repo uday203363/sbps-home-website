@@ -46,14 +46,20 @@
 
     <!-- Dashboard Portal Container (Hidden by default) -->
     <div class="admin-dashboard-wrapper" id="dashboard-section" style="display: none;">
+        <!-- Backdrop overlay for mobile sidebar -->
+        <div class="admin-sidebar-overlay" id="admin-sidebar-overlay"></div>
+
         <!-- Side Navigation bar -->
-        <aside class="dashboard-sidebar">
+        <aside class="dashboard-sidebar" id="dashboard-sidebar">
             <div class="sidebar-header">
                 <img src="logo.png" alt="Logo" class="sidebar-logo">
                 <div class="sidebar-info">
                     <h4>Sri Bhashyam</h4>
                     <span>Admin Panel</span>
                 </div>
+                <button class="admin-sidebar-close" id="admin-sidebar-close" aria-label="Close navigation sidebar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
             <div class="sidebar-nav">
                 <button class="nav-btn active" data-tab="inquiries">
@@ -100,8 +106,13 @@
         <main class="dashboard-main">
             <header class="dashboard-navbar">
                 <div class="navbar-left">
-                    <h2 id="view-title">Inquiry Messages</h2>
-                    <p id="view-subtitle">Monitor and review prospective admission and general inquiries.</p>
+                    <button class="admin-mobile-toggle" id="admin-mobile-toggle" aria-label="Toggle navigation menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div>
+                        <h2 id="view-title">Inquiry Messages</h2>
+                        <p id="view-subtitle">Monitor and review prospective admission and general inquiries.</p>
+                    </div>
                 </div>
                 <div class="navbar-right">
                     <div class="session-badge"><i class="fa-solid fa-shield-halved"></i> Secure Mode</div>
