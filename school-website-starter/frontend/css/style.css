@@ -5223,8 +5223,8 @@ img, video, iframe, canvas, svg {
     }
 
     .stats-container {
-        grid-template-columns: 1fr !important;
-        gap: 14px;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
         padding: 8px 4px;
         width: 100%;
         box-sizing: border-box;
@@ -5232,16 +5232,34 @@ img, video, iframe, canvas, svg {
 
     .stat-card {
         border-right: none !important;
-        border-bottom: 1px dashed var(--border-color) !important;
-        padding: 10px 0 14px;
+        border-bottom: none !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 12px;
+        background: rgba(248, 250, 252, 0.7);
+        padding: 12px 6px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 6px;
     }
 
-    .stat-card:last-child {
-        border-bottom: none !important;
+    .stat-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+        margin: 0 auto;
     }
 
     .stat-number {
-        font-size: 2.1rem;
+        font-size: 1.75rem !important;
+        font-weight: 800;
+        line-height: 1.1;
+    }
+
+    .stat-label {
+        font-size: 0.7rem !important;
+        letter-spacing: 0.4px;
     }
 
     /* Grids Reflow */
@@ -5554,6 +5572,11 @@ img, video, iframe, canvas, svg {
         margin-right: 6px !important;
         padding: 12px 6px !important;
         border-radius: 12px !important;
+    }
+
+    .stats-container {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
     }
 
     .btn {
